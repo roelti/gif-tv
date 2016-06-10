@@ -12,13 +12,13 @@
 <body>
 
 </div>
-<img class="image_1">
-<img class="image_2">
+<img class="image_1" src="#">
+<img class="image_2" src="#">
+
 <script>
 $(document.ready(function(){
 $.getJSON("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC", function(data){
-    $('body').css("background-image","url(" + data.data.image_url + ")");
-    setInterval("location.reload(true)", 10000);
+    $('.image_1').attr("src","("data.data.image_url")";
   });
 });
 </script>
