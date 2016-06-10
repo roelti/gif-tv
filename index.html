@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  img { 
+  width: 100%;
+  height: 100%;
+}
+  </style>
+  <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+</head>
+<body>
+
+</div>
+<img class="image_1">
+<img class="image_2">
+<script>
+$(document.ready(function(){
+$.getJSON("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC", function(data){
+    $('body').css("background-image","url(" + data.data.image_url + ")");
+    setInterval("location.reload(true)", 10000);
+  });
+});
+</script>
+ 
+</body>
+</html>
