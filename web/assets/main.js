@@ -78,6 +78,7 @@ $(".fullscreen-button").click(function(element){
 	}
 });
 
+// Show bar when mouse moves
 function mousemover(e){
 	$('body').addClass('show-tag');
 	if(runningTimeout!==null){
@@ -101,6 +102,8 @@ function applyClass(e){
 		$('body').bind('mousemove', mousemover);
 	}, 1000);
 }
+
+//Function to apply custom tag
 
 function customTag(){
 	applyClass();
@@ -127,9 +130,13 @@ function customTag(){
 		});
 }
 
+//Button to apply custom tag
+
 $(".change-button").click(function(e){
 	customTag();	
 });
+
+//Enter button to apply custom tag
 
 $('input').on('keydown', function(e){
 	if (e.keyCode == 13){
@@ -137,11 +144,14 @@ $('input').on('keydown', function(e){
 	}
 });
 
+// Back to random GIF's
+
 $(".reset-button").click(function(e){
 	$("input").val('');
 	customTag();
 });
 
+// Set interval to 10s
 setInterval(cycle, 10000);
 	$('.gif').click(cycle);
 });

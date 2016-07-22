@@ -19,3 +19,4 @@ You can select a custom tag by moving the mouse and filling the input field at t
 - [ ] Switch GIFs after playing X amount of times
 - [ ] Use microphone to monitor BPM
 - [ ] Link with X-GIF for spectaculair in sync GIF's!
+- [ ] Remote control via phone
