@@ -1,0 +1,177 @@
+@import 'https://fonts.googleapis.com/css?family=Montserrat';
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+body, html{
+	font-family: 'Montserrat', sans-serif;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	background-size: 100%;
+	background-color: black;
+	cursor: none;
+}
+
+.btn{
+	display: inline;
+	height: 20px;
+	padding: 5px 20px 5px 20px;
+	margin-left: 20px;
+	cursor: pointer;
+	border-radius: 2px;
+	color: black;
+	background-color: white;
+}
+
+.btn:hover{
+	background-color: #dddddd;
+}
+
+.change-button{
+	
+}
+
+.change-button:hover, .reset-button:hover, .fullscreen-button:hover{
+	
+}
+
+.reset-button{
+
+}
+
+.fullscreen-button{
+
+}
+
+.tag{
+	display: none;
+	cursor: none;
+	position: absolute;
+	height: 50px;
+	background-color: #090e14;
+	z-index: 100;
+	width: 100%;
+	text-align: center;
+}
+
+body.show-tag .tag {
+	display: block;
+}
+
+body.show-tag{
+	cursor: default;
+}
+
+input{
+	background-color: white;
+	padding: 5px 5px 5px 5px;
+	width: 200px;
+	font-size: 16px;
+	border-radius: 2px;
+	border: 1px solid #DDDDDD;
+}
+
+input:focus{
+	border: 1px solid rgba(81, 203, 238, 1);
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+.input_controls{
+	position: relative;
+	line-height: 50px;
+
+}
+
+span{
+	color: white;
+	font-size: 12px;
+	color: #979797;
+}
+
+.powered-by{
+	position: absolute;
+	right: 10px;
+	top: 25%;
+}
+
+.title{
+	position: absolute;
+	color: white;
+	text-align: left;
+	font-size: 20px;
+	padding-left: 20px;
+	top: 25%;
+}
+
+.gif img { 
+  height: 100%;
+  width: auto;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform:translateX(-50%);
+  max-width: 100%;
+}
+.image_1{
+	z-index: 10;
+}
+.image_2{
+	z-index: -1;
+}
+.background-transparant{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: 5;
+	opacity: 0.7;
+	background-color: black;
+}
+
+.gif{
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.active{
+	background-color: #2d9bd1;
+	color: white;
+}
+
+.show{
+	display: block;
+}
+
+.logo{
+	display: none;
+	opacity: 0.5;
+	height: 50px;
+	z-index: 20;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	transition: opacity 0.5s;
+}
+
+.logo:hover{
+	opacity: 1;
+	transition: opacity 0.5s;
+}
+
