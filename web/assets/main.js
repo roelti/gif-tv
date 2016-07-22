@@ -1,3 +1,5 @@
+var fullscreen = false;
+
 // Find the right method, call on correct element
 function launchFullscreen(element) {
   if(element.requestFullscreen) {
@@ -21,13 +23,7 @@ function exitFullscreen() {
   }
 }
 
-function dumpFullscreen() {
-  console.log("document.fullscreenElement is: ", document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
-  console.log("document.fullscreenEnabled is: ", document.fullscreenEnabled || document.mozFullScreenEnabled || document.webkitFullscreenEnabled || document.msFullscreenEnabled);
-}
-
-// Add different events for fullscreen
-
+// Set vars for images
 $(document).ready(function(){
 var background_image_1 = "";	
 var background_image_2 = "";
@@ -45,7 +41,7 @@ $.getJSON("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + ter
 	$('.image_2').attr("src",data.data.image_url);
 	});
 
-
+// Set cycle to switch images
 function cycle(){ 
 	if($('.image_1').css("z-index") == "10") {
 			$('.image_1').css("z-index", "-1"); 
@@ -67,6 +63,20 @@ function cycle(){
   		});
 		}
 }
+
+// Set fullscreen button
+$(".fullscreen-button").click(function(element){
+	if (fullscreen == false){
+		launchFullscreen(document.documentElement);
+		$('.fa-expand').removeClass('fa-expand').addClass('fa-compress');
+		fullscreen = true;
+	}
+	else{
+		exitFullscreen(document.documentElement);
+		fullscreen = false;
+		$('.fa-compress').removeClass('fa-compress').addClass('fa-expand');
+	}
+});
 
 function mousemover(e){
 	$('body').addClass('show-tag');

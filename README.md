@@ -16,5 +16,6 @@ You can select a custom tag by moving the mouse and filling the input field at t
 - [x] Custom tags
 - [x] Fullscreen mode
 - [ ] X-GIF support
+- [ ] Switch GIFs after playing X amount of times
 - [ ] Use microphone to monitor BPM
 - [ ] Link with X-GIF for spectaculair in sync GIF's!
