@@ -418,12 +418,24 @@ body.show-tag .madeby {
 
 .mo-inputcontrols{
 	display: inline-block;
+	background-image: url('background_smallbuttons.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 165px;
+    padding-top: 5px;
+    padding-bottom: 10px;
 }
 
-.mo-inputcontrols span{
+.idbutton span{
 	display: block;
 	color: white;
-	transform: translateY(25px);
+	transform: translateY(35px);
+}
+
+.gobutton span{
+	display: block;
+	color: white;
+	transform: translateY(31px);
 }
 
 .gobutton, .idbutton{
@@ -432,17 +444,17 @@ body.show-tag .madeby {
 	width: 54px;
     height: 22px;
 	background-image: url('smallbutton.svg');
-    background-position: center center;
     background-repeat: no-repeat;
     cursor: pointer;
 }
 
 .gobutton{
 	margin-right: 10px;
+    transform: translateY(4px);
 }
 
 .idbutton{
-	transform: translateY(-4px);
+	transform: translateY(0px);
 	margin-left: 10px;
 }
 
