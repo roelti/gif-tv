@@ -63,15 +63,24 @@ body, html{
 }
 
 .fullscreen-button{
-	// position: absolute;
-	// right: 20px;
-	// top: 10px;
 }
 
 .rightcontrols{
 	position: absolute;
 	right: 20px;
 	top: 15px;
+}
+
+/*Tag*/
+
+.show-tag .tag{
+	transform: translateY(0px);
+	transition-property: transform;
+	transition-duration: 0.5s;
+}
+
+.show-tag{
+	cursor: default;
 }
 
 .tag{
@@ -85,41 +94,6 @@ body, html{
 	text-align: left;
 	transition-property: transform;
 	transition-duration: 0.5s;
-}
-
-.madeby{
-	transform: translateY(40px);
-	display: block;
-	position: absolute;
-	bottom: 0;
-	height: 40px;
-	background-color: #090e14;
-	color: white;
-	width: 100%;
-	text-align: center;
-	z-index: 100;
-	transition-property: transform;
-	transition-duration: 0.5s;
-	line-height: 40px;
-}
-
-.madeby a{
-	text-decoration: none;
-	color: white;
-}
-
-body.show-tag .tag{
-	transform: translateY(0px);
-	transition-property: transform;
-	transition-duration: 0.5s;
-}
-
-body.show-tag .madeby {
-	transform: translateY(0px);
-}
-
-body.show-tag{
-	cursor: default;
 }
 
 input{
@@ -152,11 +126,6 @@ span{
 	font-size: 12px;
 }
 
-.powered-by{
-	position: absolute;
-	right: 10px;
-	top: 25%;
-}
 
 .modus{
 	color: white;
@@ -206,6 +175,42 @@ span{
   transform:translateX(-50%);
   max-width: 100%;
 }
+
+/*MadeBy*/
+
+.madeby{
+	transform: translateY(40px);
+	display: block;
+	position: absolute;
+	bottom: 0;
+	height: 40px;
+	background-color: #090e14;
+	color: white;
+	width: 100%;
+	text-align: center;
+	z-index: 100;
+	transition-property: transform;
+	transition-duration: 0.5s;
+	line-height: 40px;
+}
+
+.madeby a{
+	text-decoration: none;
+	color: white;
+}
+
+body.show-tag .madeby {
+	transform: translateY(0px);
+}
+
+.powered-by{
+	position: absolute;
+	right: 10px;
+	top: 15%;
+}
+
+/*Main images*/
+
 .image_1{
 	z-index: 10;
 }
@@ -258,7 +263,7 @@ span{
 	width: 22px;
 }
 
-
+/*Popup*/
 
 .popup{
 	position: fixed;
@@ -307,7 +312,7 @@ span{
 	display: none;
 }
 
-// Mobile
+/*Mobile*/
 
 .mobile{
 	text-align: center;
