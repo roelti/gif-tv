@@ -4,6 +4,7 @@
 <title>Random GIF TV Mobile</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="width=device-width, user-scalable=no">
 <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="https://use.fontawesome.com/abc753b90a.js"></script>
@@ -52,10 +53,10 @@
 	
 	<div class="mo-controls">
 		<div class="shuffle-button">
-			<img src="/assets/blue_mo.svg">
+			
 		</div>
 		<div class="next-button">
-			<img src="/assets/yellow_mo.svg">
+			
 		</div>
 	</div>
 
@@ -92,7 +93,12 @@
 	   });
 	   $('#unique-id').on('change', function(){
 	   		idValue = $('#unique-id').val();
+	   		
 	   });
+	   $("#input-tag").on("change paste keyup", function() {
+	      $('.gobutton').addClass('cntrl_active');
+	   });
+
 	 </script>
 </body>
 </html>

@@ -352,6 +352,9 @@ body.show-tag .madeby {
 	height: auto;
 	padding: 0;
 	margin: 0;
+	width: 104px;
+	height: 104px;
+	cursor: pointer;
 }
 
 .shuffle-button img, .next-button img{
@@ -360,13 +363,35 @@ body.show-tag .madeby {
 }
 
 .shuffle-button{
-	bottom: 0;
-    left: 0px;
+	bottom: 10px;
+    left: 10px;
+    background-image: url('blue.svg');
 }
 
+.shuffle-button:focus, .shuffle-button:hover{
+	background-image: url('blue_mo.svg');
+	width: 124px;
+	height: 124px;
+	bottom: 0;
+    left: 0;
+    background-position: center center;
+}
+
+
+
 .next-button{
-    top: 0;
-    right: 0px;
+    top: 10px;
+    right: 10px;
+    background-image: url('yellow.svg');
+}
+
+.next-button:focus, .next-button:hover{
+	background-image: url('yellow_mo.svg');
+	width: 124px;
+	height: 124px;
+	top: 0;
+    right: 0;
+    background-position: center center;
 }
 
 .mobile-input{
@@ -395,6 +420,11 @@ body.show-tag .madeby {
 	border-top: 8px solid #404040;
 	border-bottom: 12px solid #404040;
 	font-family: 'Digital'; 
+	text-indent: 20px;
+}
+
+#input-tag:focus{
+	outline: 0;
 }
 
 .giftv-logo{
@@ -451,6 +481,10 @@ body.show-tag .madeby {
 .gobutton{
 	margin-right: 10px;
     transform: translateY(4px);
+}
+
+.cntrl_active{
+	background-image: url('smallbutton_mo.svg');
 }
 
 .idbutton{
