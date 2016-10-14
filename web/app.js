@@ -1,36 +1,34 @@
-var app = require('http').createServer(handler)
-var io = require('socket.io')(app);
+var express = require('express');
+
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
 var fs = require('fs');
 
-app.listen(4000);
+app.use('/assets', express.static(__dirname + '/assets'));
 
-function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
+app.all('/*', function(req, res, next) {
+    res.sendFile('index.html', { root: __dirname });
+});
 
-    res.writeHead(200);
-    res.end(data);
-  });
-}
+server.listen(80);
 
 var clientList = {};
 var id = Math.floor(Math.random() * 9000) + 1000;
 
 io.on('connection', function (socket) {
+  
   var uniqueID = id;
 
-  socket.emit('server connect', { hello: 'world' });
+  socket.emit('server connect', {});
   id = Math.floor(Math.random() * 9000) + 1000;
 
   socket.on('desktop connect', function (data) {
     clientList[uniqueID] = socket;
-
     socket.emit('unique id', { id : uniqueID });
   });
+
   socket.on('mobile_connection', function (data) {
     console.log(data);
   });
@@ -42,6 +40,7 @@ io.on('connection', function (socket) {
       desktopClient.emit('next click', { mobile: 'clicked next!' });
     }   
   });
+
   socket.on('shuffle_click', function (data) {
     console.log(data);
     var desktopClient = clientList[data.id];
@@ -49,6 +48,7 @@ io.on('connection', function (socket) {
       desktopClient.emit('shuffle click', { mobile: 'clicked shuffle!' });
     }
   });
+
   socket.on('tag_click', function (data) {
     console.log(data);
     var inputValue = data.my;
@@ -57,6 +57,5 @@ io.on('connection', function (socket) {
       desktopClient.emit('tag click', { mobileinput: inputValue });
     }
   });
-
 
 });
