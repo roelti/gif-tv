@@ -25,6 +25,9 @@ body, html{
 	background-size: 100%;
 	background-color: black;
 }
+.html{
+	-webkit-font-smoothing: antialiased;
+}
 
 .desktop{
 	cursor: none;
@@ -64,7 +67,7 @@ body, html{
 }
 
 .tag{
-	display: none;
+	transform: translateY(-50px);
 	cursor: default;
 	position: absolute;
 	height: 50px;
@@ -72,6 +75,8 @@ body, html{
 	z-index: 100;
 	width: 100%;
 	text-align: center;
+	transition-property: transform;
+	transition-duration: 0.5s;
 }
 
 .madeby{
@@ -91,7 +96,13 @@ body, html{
 	color: white;
 }
 
-body.show-tag .tag, body.show-tag .madeby {
+body.show-tag .tag{
+	transform: translateY(0px);
+	transition-property: transform;
+	transition-duration: 0.5s;
+}
+
+body.show-tag .madeby {
 	display: block;
 }
 
@@ -116,7 +127,7 @@ input:focus{
 .input_controls{
 	position: relative;
 	line-height: 50px;
-
+	display: inline-block;
 }
 
 span{
@@ -209,8 +220,11 @@ span{
 
 .popup{
 	position: fixed;
-	height: 100%;
-	width: 100%;
+	height: 500px;
+	width: 500px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 	z-index: 100;
 	background-color: rgba(0, 0, 0, 0.8);
 }
@@ -234,9 +248,7 @@ span{
 }
 
 .desktop .popup--content{
-	left: 50%;
-	transform: translateX(-50%);
-	max-width: 500px;
+
 }
 
 .closebtn{
