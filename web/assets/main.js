@@ -88,6 +88,7 @@ $(document).ready(function(){
 	assign_bootstrap_mode();
 
 
+
 	// Set fullscreen button
 	$(".fullscreen-button").click(function(element){
 		if (fullscreen == false){
