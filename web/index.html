@@ -27,8 +27,8 @@
 			<i class="fa fa-times" aria-hidden="true"></i>
 		</div>
 		<div class="popup--content">
-			<p>This site is meant for playing random gifs</p>
-			<p>You can also enter tags (For more specific random GIFs) or randomize everything (default setting).</p>
+			<p>Ever had your TV just sitting there during a party?</p>
+			<p>Enter: GIF ME TV! Just a bunch of random gifs playing fullscreen. You can either go for full randomness or for keyword randomness</p>
 			<p>You can also control via your mobile phone! Go to giphy.roel/mobile.html and follow the steps.</p>
 			<p><span class="unique_id">ID =<span></p>
 		</div>
@@ -36,22 +36,43 @@
 
 	<div class="tag"> 
 		<div class="title">GIF <img class="tv" src="assets/tv_white.svg"><span class="unique_id">ID =<span></div>
-		<div class="input_controls">
-			<input id="tag-input" type="text" name="tag" placeholder="Keywords"> 
-			<div class="btn change-button"><i class="fa fa-sign-in" aria-hidden="true"></i>
- 			GO!</div> 
- 			<span>or press enter..</span>
+		<div class="controls">
+			<div class="modus">
+				<span>Mode:</span>
+				<div class="randommode active">
+					Random
+				</div>
+				<div class="keywordmode">
+					Keyword
+				</div>
+			</div>
+
+			<div class="input_controls hidden">
+				<input id="tag-input" type="text" name="tag" placeholder="Keywords"> 
+				<div class="btn change-button"><i class="fa fa-sign-in" aria-hidden="true"></i>
+	 			GO!</div> 
+	 			<span>or press enter..</span>
+			</div>
 		</div>
-		<div class="btn reset-button active"><i class="fa fa-random" aria-hidden="true"></i></div>
-			<div class="btn fullscreen-button" onclick="launchFullscreen(document.documentElement);"><i class="fa fa-expand" aria-hidden="true"></i></div>
+		
+		<div class="rightcontrols">
+			<div class="btn infopopup-button">
+				<i class="fa fa-info" aria-hidden="true"></i>
+			</div>
+			<div class="btn fullscreen-button" onclick="launchFullscreen(document.documentElement);"><i class="fa fa-expand" aria-hidden="true"></i>
+			</div>
+		</div>
+
 	</div>
 
+	
 	<div class="gif">
 		<div class="background-transparant"></div>
 		<img class="image_2">
 		<img class="image_1">
 	</div>
 
+	
 	<div class="madeby">
 		Made by <a href="https://twitter.com/roeltinkhof" target="_blank">Roel Tinkhof</a>
 		<img class="powered-by" src="assets/giphy.png">

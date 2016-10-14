@@ -63,7 +63,15 @@ body, html{
 }
 
 .fullscreen-button{
+	// position: absolute;
+	// right: 20px;
+	// top: 10px;
+}
 
+.rightcontrols{
+	position: absolute;
+	right: 20px;
+	top: 15px;
 }
 
 .tag{
@@ -74,21 +82,25 @@ body, html{
 	background-color: #090e14;
 	z-index: 100;
 	width: 100%;
-	text-align: center;
+	text-align: left;
 	transition-property: transform;
 	transition-duration: 0.5s;
 }
 
 .madeby{
-	display: none;
+	transform: translateY(40px);
+	display: block;
 	position: absolute;
 	bottom: 0;
-	height: 20px;
+	height: 40px;
 	background-color: #090e14;
 	color: white;
 	width: 100%;
 	text-align: center;
 	z-index: 100;
+	transition-property: transform;
+	transition-duration: 0.5s;
+	line-height: 40px;
 }
 
 .madeby a{
@@ -103,7 +115,7 @@ body.show-tag .tag{
 }
 
 body.show-tag .madeby {
-	display: block;
+	transform: translateY(0px);
 }
 
 body.show-tag{
@@ -126,14 +138,18 @@ input:focus{
 
 .input_controls{
 	position: relative;
+	padding-left: 100px;
 	line-height: 50px;
 	display: inline-block;
+}
+
+.controls{
+	padding-left: 240px;
 }
 
 span{
 	color: white;
 	font-size: 12px;
-	color: #979797;
 }
 
 .powered-by{
@@ -142,13 +158,38 @@ span{
 	top: 25%;
 }
 
+.modus{
+	color: white;
+	position: relative;
+	display: inline-block;
+	height: 50px;
+    line-height: 50px;
+}
+
+.modus span{
+	color: white;
+	font-size: 16px;
+	padding-right: 10px;
+}
+
+.randommode, .keywordmode{
+	display: inline-block;
+	height: 100%;
+	color: grey;
+	padding-left: 10px;
+	padding-right: 10px;
+	cursor: pointer;
+}
+
 .title{
 	position: absolute;
+	display:inline;
 	color: white;
 	text-align: left;
 	font-size: 20px;
 	padding-left: 20px;
 	top: 25%;
+	left: 20px;
 }
 
 .title span{
@@ -189,6 +230,7 @@ span{
 .active{
 	background-color: #2d9bd1;
 	color: white;
+
 }
 
 .show{
@@ -220,8 +262,6 @@ span{
 
 .popup{
 	position: fixed;
-	height: 500px;
-	width: 500px;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
@@ -231,10 +271,12 @@ span{
 
 .popup--content{
 	opacity: 1;
+	max-width: 500px;
 	color: white;
+	padding-top: 50px;
 	padding-left: 30px;
 	padding-right: 30px;
-	position: absolute;
+	position: relative;
 	top: 30%;
 }
 
@@ -243,8 +285,8 @@ span{
 }
 
 .desktop .closebtn{
-	top: 60px;
-	right: 30px;
+	top: 0px;
+	right: 10px;
 }
 
 .desktop .popup--content{
@@ -258,6 +300,7 @@ span{
 	font-size: 38px;
 	color: white;
 	cursor: pointer;
+	z-index: 200;
 }
 
 .hidden{
