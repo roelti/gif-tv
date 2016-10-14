@@ -1,27 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html class="desktop">
 <head>
 <title>Random GIF TV</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
+
 <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="https://use.fontawesome.com/abc753b90a.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 
 <!-- Favicon -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="theme-color" content="#ffffff">
 <!-- /Favicon -->
 
 </head>
-<body>
+<body class="desktop">
+
+	<div class="popup">
+		<div class="closebtn">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</div>
+		<div class="popup--content">
+			<p>This site is meant for playing random gifs</p>
+			<p>You can also enter tags (For more specific random GIFs) or randomize everything (default setting).</p>
+			<p>You can also control via your mobile phone! Go to giphy.roel/mobile.html and follow the steps.</p>
+			<p><span class="unique_id">ID =<span></p>
+		</div>
+	</div>
 
 	<div class="tag"> 
-		<div class="title">GIF <img class="tv" src="assets/tv_white.svg"></div>
+		<div class="title">GIF <img class="tv" src="assets/tv_white.svg"><span class="unique_id">ID =<span></div>
 		<div class="input_controls">
 			<input id="tag-input" type="text" name="tag" placeholder="Enter a tag here"> 
 			<div class="btn change-button"><i class="fa fa-sign-in" aria-hidden="true"></i>
@@ -40,6 +54,33 @@
 	</div>
 	<a href="http://www.studioseptember.nl" target="_blank"><img class="logo" src="assets/september.png"></a>
 
- <script src="assets/main.js"></script>
+	 <script src="assets/main.js"></script>
+	 <script>
+	    var socket = io('http://giphy.roel:4000');
+
+	    socket.on('server connect', function (data) {
+	     	console.log(data);
+	     	socket.emit('desktop connect', { my: 'desktop connected' });
+	    });
+
+	    socket.on('unique id', function (event) {
+	    	console.log(event);
+	    	$('.unique_id').text('ID = ' + event.id);
+	    });
+
+	    socket.on('next click', function (event) {
+	   		console.log(event);
+	   		$('.gif').click();
+	    });
+	    socket.on('shuffle click', function (event) {
+	   		console.log(event);
+	   		$(".reset-button").click();	
+	    });
+	     socket.on('tag click', function (event) {
+	    		console.log(event);
+	    		$('#tag-input').val(event.mobileinput);
+	    		$(".change-button").click();
+	     });
+	 </script>
 </body>
 </html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Random GIF TV Mobile</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://use.fontawesome.com/abc753b90a.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+<!-- /Favicon -->
+
+</head>
+<body class="mobile">
+
+	<div class="popup">
+		<div class="closebtn">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</div>
+		<div class="popup--content">
+			<p>Step 1. Enter unique ID (you can see it in the top bar on desktop).</p>
+			<p>Step 2. Command the desktop GIF tv site by entering tags, clicking next or randomize everything.</p>
+		</div>
+	</div>
+
+
+	<div class="id">
+		<input id="unique-id" class="mobile-input" type="tel" placeholder="id">
+	</div>
+	<div class="inputfield-tag">
+		<input id="input-tag" class="mobile-input" type="text" name="Fill in tag" placeholder="Enter a tag here">
+	</div>
+	<div class="gobutton">
+		<div class="btn input-go">Go</div>
+	</div>
+	
+
+	<div class="giftv-logo">
+		<span>GIF </span><img class="tv" src="assets/tv_white.svg">
+		<div>REMOTE</div>
+	</div>
+
+	<div class="btn shuffle-button active">
+		<i class="fa fa-random" aria-hidden="true"></i>
+	</div>
+	<div class="btn next-button active">
+		<i class="fa fa-step-forward" aria-hidden="true"></i>
+	</div>
+
+	 <script>
+
+		$('.closebtn').on('click', function(){
+	   		$('.popup').addClass('hidden');
+	   	});
+
+	   	var socket = io('http://giphy.roel:4000');
+	   	socket.on('server connect', function (data) {
+	     	console.log(data);
+	     	socket.emit('mobile_connection', { my: 'mobile loaded' });
+	   	});
+
+	   	$('.next-button').on('click', function(){
+	   		socket.emit('next_click', { my: 'next button', id: idValue });
+	   	});
+	   $('.shuffle-button').on('click', function(){
+	   		socket.emit('shuffle_click', { my: 'shuffle', id: idValue });
+	   });
+	   $('.input-go').on('click', function(){
+	   		input = $('#input-tag').val();
+	   		socket.emit('tag_click', { my: input, id: idValue });
+	   });
+	   $('#unique-id').on('change', function(){
+	   		idValue = $('#unique-id').val();
+	   });
+	 </script>
+</body>
+</html>
