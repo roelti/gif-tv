@@ -135,13 +135,18 @@ $(document).ready(function(){
 		term = $("input").val();
 		if (term == ''){
 			document.title = 'Random GIFs';
+			$(".keywordmode").removeClass('active');
 			$(".change-button").removeClass('active');
-			$(".reset-button").addClass('active');
+			$(".randommode").addClass('active');
+			$(".input_controls").addClass('hidden');
+			$('body').find('.popup').addClass('hidden');
 		}
 		else {
 			document.title = ' Now playing: ' + term + ' GIFs';
-			$(".reset-button").removeClass('active');
+			$(".randommode").removeClass('active');
 			$(".change-button").addClass('active');
+			$(".keywordmode").addClass('active');
+			$('body').find('.popup').addClass('hidden');
 		}
 		$.getJSON("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + term, function(data){
 			background_image_1 = data.data.image_url
@@ -156,10 +161,21 @@ $(document).ready(function(){
 	}
 
 	$('.closebtn').on('click', function(){
-   		$('.popup').addClass('hidden');
+   		$('body').find('.popup').addClass('hidden');
+   	});
+
+	$('.infopopup-button').on('click', function(){
+   		$('body').find('.popup').removeClass('hidden');
    	});
 
 	//Button to apply custom tag
+
+	$(".keywordmode").click(function(e){
+		$(".input_controls").removeClass('hidden');
+		$(".randommode").removeClass('active');
+		$(".keywordmode").addClass('active');
+		$('body').find('.popup').addClass('hidden');
+	});
 
 	$(".change-button").click(function(e){
 		customTag();	
@@ -175,7 +191,7 @@ $(document).ready(function(){
 
 	// Back to random GIF's
 
-	$(".reset-button").click(function(e){
+	$(".randommode").click(function(e){
 		$("input").val('');
 		customTag();
 	});

@@ -63,7 +63,24 @@ body, html{
 }
 
 .fullscreen-button{
+}
 
+.rightcontrols{
+	position: absolute;
+	right: 20px;
+	top: 15px;
+}
+
+/*Tag*/
+
+.show-tag .tag{
+	transform: translateY(0px);
+	transition-property: transform;
+	transition-duration: 0.5s;
+}
+
+.show-tag{
+	cursor: default;
 }
 
 .tag{
@@ -74,40 +91,9 @@ body, html{
 	background-color: #090e14;
 	z-index: 100;
 	width: 100%;
-	text-align: center;
+	text-align: left;
 	transition-property: transform;
 	transition-duration: 0.5s;
-}
-
-.madeby{
-	display: none;
-	position: absolute;
-	bottom: 0;
-	height: 20px;
-	background-color: #090e14;
-	color: white;
-	width: 100%;
-	text-align: center;
-	z-index: 100;
-}
-
-.madeby a{
-	text-decoration: none;
-	color: white;
-}
-
-body.show-tag .tag{
-	transform: translateY(0px);
-	transition-property: transform;
-	transition-duration: 0.5s;
-}
-
-body.show-tag .madeby {
-	display: block;
-}
-
-body.show-tag{
-	cursor: default;
 }
 
 input{
@@ -126,29 +112,53 @@ input:focus{
 
 .input_controls{
 	position: relative;
+	padding-left: 100px;
 	line-height: 50px;
 	display: inline-block;
+}
+
+.controls{
+	padding-left: 240px;
 }
 
 span{
 	color: white;
 	font-size: 12px;
-	color: #979797;
 }
 
-.powered-by{
-	position: absolute;
-	right: 10px;
-	top: 25%;
+
+.modus{
+	color: white;
+	position: relative;
+	display: inline-block;
+	height: 50px;
+    line-height: 50px;
+}
+
+.modus span{
+	color: white;
+	font-size: 16px;
+	padding-right: 10px;
+}
+
+.randommode, .keywordmode{
+	display: inline-block;
+	height: 100%;
+	color: grey;
+	padding-left: 10px;
+	padding-right: 10px;
+	cursor: pointer;
 }
 
 .title{
 	position: absolute;
+	display:inline;
 	color: white;
 	text-align: left;
 	font-size: 20px;
 	padding-left: 20px;
 	top: 25%;
+	left: 20px;
 }
 
 .title span{
@@ -165,6 +175,42 @@ span{
   transform:translateX(-50%);
   max-width: 100%;
 }
+
+/*MadeBy*/
+
+.madeby{
+	transform: translateY(40px);
+	display: block;
+	position: absolute;
+	bottom: 0;
+	height: 40px;
+	background-color: #090e14;
+	color: white;
+	width: 100%;
+	text-align: center;
+	z-index: 100;
+	transition-property: transform;
+	transition-duration: 0.5s;
+	line-height: 40px;
+}
+
+.madeby a{
+	text-decoration: none;
+	color: white;
+}
+
+body.show-tag .madeby {
+	transform: translateY(0px);
+}
+
+.powered-by{
+	position: absolute;
+	right: 10px;
+	top: 15%;
+}
+
+/*Main images*/
+
 .image_1{
 	z-index: 10;
 }
@@ -189,6 +235,7 @@ span{
 .active{
 	background-color: #2d9bd1;
 	color: white;
+
 }
 
 .show{
@@ -216,12 +263,10 @@ span{
 	width: 22px;
 }
 
-
+/*Popup*/
 
 .popup{
 	position: fixed;
-	height: 500px;
-	width: 500px;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
@@ -231,10 +276,12 @@ span{
 
 .popup--content{
 	opacity: 1;
+	max-width: 500px;
 	color: white;
+	padding-top: 50px;
 	padding-left: 30px;
 	padding-right: 30px;
-	position: absolute;
+	position: relative;
 	top: 30%;
 }
 
@@ -242,9 +289,14 @@ span{
 	margin-bottom: 20px;
 }
 
+.popup--content span{
+	font-family: "Courier New", Courier, monospace;
+    font-size: 20px;
+}
+
 .desktop .closebtn{
-	top: 60px;
-	right: 30px;
+	top: 0px;
+	right: 10px;
 }
 
 .desktop .popup--content{
@@ -258,13 +310,14 @@ span{
 	font-size: 38px;
 	color: white;
 	cursor: pointer;
+	z-index: 200;
 }
 
 .hidden{
 	display: none;
 }
 
-// Mobile
+/*Mobile*/
 
 .mobile{
 	text-align: center;
