@@ -65,7 +65,7 @@ body, html{
 
 .tag{
 	display: none;
-	cursor: none;
+	cursor: default;
 	position: absolute;
 	height: 50px;
 	background-color: #090e14;
@@ -74,7 +74,24 @@ body, html{
 	text-align: center;
 }
 
-body.show-tag .tag {
+.madeby{
+	display: none;
+	position: absolute;
+	bottom: 0;
+	height: 20px;
+	background-color: #090e14;
+	color: white;
+	width: 100%;
+	text-align: center;
+	z-index: 100;
+}
+
+.madeby a{
+	text-decoration: none;
+	color: white;
+}
+
+body.show-tag .tag, body.show-tag .madeby {
 	display: block;
 }
 
