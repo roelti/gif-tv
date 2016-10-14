@@ -12,7 +12,7 @@ app.all('/*', function(req, res, next) {
     res.sendFile('index.html', { root: __dirname });
 });
 
-server.listen(80);
+server.listen(443);
 
 var clientList = {};
 var id = Math.floor(Math.random() * 9000) + 1000;
