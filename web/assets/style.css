@@ -31,7 +31,11 @@ body, html{
 	background-size: 100%;
 	background-color: black;
 }
-.html{
+body{
+	height: 100%;
+}
+html{
+	height: 100%;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -332,12 +336,13 @@ body.show-tag .madeby {
 }
 
 .mobile{
+	height: 100%;
 	text-align: center;
     background-color: transparent;
 }
 
 .mo-controls{
-	position: fixed;
+	position: absolute;
 	background-image: url('background_buttons.svg');
 	background-repeat: no-repeat;
 	height: 214px;
