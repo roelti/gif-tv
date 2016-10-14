@@ -59,8 +59,10 @@
 	<a href="http://www.studioseptember.nl" target="_blank"><img class="logo" src="assets/september.png"></a>
 
 	 <script src="assets/main.js"></script>
+
 	 <script>
-	    var socket = io('http://giphy.roel:4000');
+
+	    var socket = io();
 
 	    socket.on('server connect', function (data) {
 	     	console.log(data);
@@ -86,5 +88,6 @@
 	    		$(".change-button").click();
 	     });
 	 </script>
+
 </body>
 </html>
