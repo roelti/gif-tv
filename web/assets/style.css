@@ -1,4 +1,10 @@
 @import 'https://fonts.googleapis.com/css?family=Montserrat';
+
+@font-face {
+    font-family: Digital;
+    src: url(digital.woff);
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -319,24 +325,48 @@ body.show-tag .madeby {
 
 /*Mobile*/
 
+.mobile_site{
+	background-image: url('background.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
 .mobile{
 	text-align: center;
+    background-color: transparent;
+}
+
+.mo-controls{
+	position: fixed;
+	background-image: url('background_buttons.svg');
+	background-repeat: no-repeat;
+	height: 214px;
+	width: 214px;
+	bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .shuffle-button, .next-button{
-	position: fixed;
-	bottom: 30px;
+	position: absolute;
 	height: auto;
-	padding: 30px 30px 30px 30px;
+	padding: 0;
 	margin: 0;
 }
 
+.shuffle-button img, .next-button img{
+	width: 124px;
+	height: auto;
+}
+
 .shuffle-button{
-	left: 20px;
+	bottom: 0;
+    left: 0px;
 }
 
 .next-button{
-	right: 20px;
+    top: 0;
+    right: 0px;
 }
 
 .mobile-input{
@@ -346,11 +376,25 @@ body.show-tag .madeby {
 }
 
 .inputfield-tag{
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
+	width: 100%;
 	text-align: center;
 	margin-bottom: 10px;
+	padding-top: 50px;
+}
+
+#input-tag{
+	background-color: #C7C7B0;
+	width: 80%;
+	color: black;
+	font-size: 45px;
+	outline: 0;
+	border-radius: 5px;
+	text-transform: uppercase;
+	border-left: 10px solid #383838;
+	border-right: 10px solid #383838;
+	border-top: 8px solid #404040;
+	border-bottom: 12px solid #404040;
+	font-family: 'Digital'; 
 }
 
 .giftv-logo{
@@ -372,10 +416,34 @@ body.show-tag .madeby {
 	width: auto;
 }
 
-.gobutton{
+.mo-inputcontrols{
+	display: inline-block;
+}
+
+.mo-inputcontrols span{
+	display: block;
+	color: white;
+	transform: translateY(25px);
+}
+
+.gobutton, .idbutton{
+	display: inline-block;
 	text-align: center;
-	width: 100%;
-	padding-bottom: 30px;
+	width: 54px;
+    height: 22px;
+	background-image: url('smallbutton.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.gobutton{
+	margin-right: 10px;
+}
+
+.idbutton{
+	transform: translateY(-4px);
+	margin-left: 10px;
 }
 
 .input-go{
@@ -390,6 +458,52 @@ body.show-tag .madeby {
 	margin-right: auto;
 	margin-top: 30px;
 	margin-bottom: 30px;
+}
+
+.mo-madeby{
+	position: fixed;
+	bottom: 10px;
+	font-size: 13px;
+	color: #5a5a5a;
+	width: 100%;
+	text-align: center;
+}
+
+.mo-madeby a{
+	text-decoration: none;
+	color: #5a5a5a;
+}
+
+.mo-popup{
+	width: 80%;
+    padding-bottom: 25px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.mo-popup--content{
+	text-align: left;
+	opacity: 1;
+	color: white;
+	padding-top: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
+	position: relative;
+	top: 30%;
+}
+
+.mo-closebtn {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    font-size: 38px;
+    color: white;
+    cursor: pointer;
+    z-index: 200;
 }
 
 

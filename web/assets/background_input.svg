@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="320px" height="93px" viewBox="0 0 320 93" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.2 (33826) - http://www.bohemiancoding.com/sketch -->
+    <title>Path 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="320" height="93" rx="5"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-40.000000, -121.000000)">
+            <g id="Path-2" transform="translate(40.000000, 121.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#373737" xlink:href="#path-1"></use>
+                <polygon fill="#404040" mask="url(#mask-2)" points="0.025390625 92.9994507 11.7872314 78.8492432 307.730103 78.7844238 308.098389 78.6241455 308.063477 78.9680176 308.380981 79.1102295 319.987732 93.00177 319.989258 99.6738281 0.259765625 100.782227"></polygon>
+                <path d="M-1.97460938,13.6555786 L11.7872314,3.50537109 C11.7872314,3.50537109 306.518313,-0.543261867 307.730103,-0.559448242 C308.941893,-0.575634617 298.380981,-8.37585449 298.380981,-8.37585449 L308.063477,-0.375854492 L307.380981,2.76635742 L321.987732,13.6578979 L319.989258,20.3299561 L0.259765625,21.4383545 L-1.97460938,13.6555786 Z" fill="#404040" mask="url(#mask-2)" transform="translate(160.006561, 6.531250) scale(1, -1) translate(-160.006561, -6.531250) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
