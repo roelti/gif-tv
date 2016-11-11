@@ -118,6 +118,7 @@ input{
 input:focus{
 	border: 1px solid rgba(81, 203, 238, 1);
 	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	outline: none;
 }
 
 .input_controls{
@@ -143,12 +144,11 @@ span{
 	display: inline-block;
 	height: 50px;
     line-height: 50px;
-}
-
-.modus span{
-	color: white;
-	font-size: 16px;
-	padding-right: 10px;
+    span{
+    	color: white;
+    	font-size: 16px;
+    	padding-right: 10px;
+    }
 }
 
 .randommode, .keywordmode{
@@ -169,11 +169,10 @@ span{
 	padding-left: 20px;
 	top: 25%;
 	left: 20px;
-}
-
-.title span{
-	color: white;
-	padding-left: 25px;
+	span{
+		color: white;
+		padding-left: 25px;
+	}
 }
 
 .gif img { 
@@ -261,11 +260,10 @@ body.show-tag .madeby {
 	bottom: 10px;
 	right: 10px;
 	transition: opacity 0.5s;
-}
-
-.logo:hover{
-	opacity: 1;
-	transition: opacity 0.5s;
+	&:hover{
+		opacity: 1;
+		transition: opacity 0.5s;
+	}
 }
 
 .tv{
@@ -293,15 +291,13 @@ body.show-tag .madeby {
 	padding-right: 30px;
 	position: relative;
 	top: 30%;
-}
-
-.popup--content p{
-	margin-bottom: 20px;
-}
-
-.popup--content span{
-	font-family: "Courier New", Courier, monospace;
-    font-size: 20px;
+	p{
+		margin-bottom: 20px;
+	}
+	span{
+		font-family: "Courier New", Courier, monospace;
+	    font-size: 20px;
+	}
 }
 
 .desktop .closebtn{
@@ -360,43 +356,38 @@ body.show-tag .madeby {
 	width: 104px;
 	height: 104px;
 	cursor: pointer;
-}
-
-.shuffle-button img, .next-button img{
-	width: 124px;
-	height: auto;
+	img{
+		width: 124px;
+		height: auto;
+	}
 }
 
 .shuffle-button{
 	bottom: 10px;
     left: 10px;
     background-image: url('../images/blue.svg');
+    &:focus, &:active, &:hover{
+    		background-image: url('../images/blue_mo.svg');
+    		width: 124px;
+    		height: 124px;
+    		bottom: 0;
+    	    left: 0;
+    	    background-position: center center;
+    }
 }
-
-.shuffle-button:focus, .shuffle-button:hover{
-	background-image: url('../images/blue_mo.svg');
-	width: 124px;
-	height: 124px;
-	bottom: 0;
-    left: 0;
-    background-position: center center;
-}
-
-
 
 .next-button{
     top: 10px;
     right: 10px;
     background-image: url('../images/yellow.svg');
-}
-
-.next-button:focus, .next-button:hover{
-	background-image: url('../images/yellow_mo.svg');
-	width: 124px;
-	height: 124px;
-	top: 0;
-    right: 0;
-    background-position: center center;
+    &:focus, &:active, &:hover{
+    		background-image: url('../images/yellow_mo.svg');
+    		width: 124px;
+    		height: 124px;
+    		top: 0;
+    	    right: 0;
+    	    background-position: center center;
+    }
 }
 
 .mobile-input{
@@ -426,10 +417,10 @@ body.show-tag .madeby {
 	border-bottom: 12px solid #404040;
 	font-family: 'Digital'; 
 	text-indent: 20px;
-}
-
-#input-tag:focus{
-	outline: 0;
+	&:focus{
+		outline: none;
+		box-shadow: none;
+	}
 }
 
 .giftv-logo{
