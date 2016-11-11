@@ -23,7 +23,7 @@ function exitFullscreen() {
 }
 
 function assign_bootstrap_mode() {
-    width = $( window ).width();
+    width = $( window ).innerWidth();
     var mode = '';
     if (width<768) {
         mode = "mode-xs";
@@ -38,7 +38,7 @@ function assign_bootstrap_mode() {
         mode = "mode-lg";
     }
     if (mode == 'mode-xs'){
-    	window.location.replace("/mobile.html"); 
+    	window.location.replace("/m"); 
     }
 }
 
