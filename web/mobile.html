@@ -48,11 +48,13 @@
 	</div>
 
 	<div class="inputfield-tag">
-		<input id="input-tag" class="mobile-input" type="text" name="Fill in tag" placeholder="Keyword">
-		<div class="indicator">
-			<span class="indic-keyword">Keyword</span>
-			<span class="indic-random indic-active"><i class="fa fa-random" aria-hidden="true"></i></span>
-		</div>
+		<form>
+			<input id="input-tag" class="mobile-input" type="text" name="Fill in tag" placeholder="Keyword">
+			<div class="indicator">
+				<span class="indic-keyword">Keyword</span>
+				<span class="indic-random indic-active"><i class="fa fa-random" aria-hidden="true"></i></span>
+			</div>
+		</form>
 	</div>
 	<div class="cur_playing">Now playing: <span>Random</span> GIFs</div>
 	<div class="mo-inputcontrols">
@@ -81,41 +83,73 @@
 
 	 <script>
 
+		var idValue;
+
+
+
+		var socket = io();
+
+
+		$('.next-button').on('click', function(){
+			socket.emit('control', { command: 'next', id: idValue });
+		});
+
+		$('.shuffle-button').on('click', function(){
+			$('#input-tag').val('').closest('form').submit();
+		});
+
+
+
 		$('.mo-closebtn').on('click', function(){
-	   		$('.mo-popup').addClass('hidden');
-	   	});
+			$('.mo-popup').addClass('hidden');
+		});
 
-	   	$('.idbutton').on('click', function(){
-	   		$('.mo-popup').removeClass('hidden');
-	   	});
+		$('.idbutton').on('click', function(){
+			$('.mo-popup').removeClass('hidden');
+		});
 
-	   	var socket = io();
+		$('#unique-id').on('change', function(){
+			idValue = $('#unique-id').val();
+		});
 
-	   	$('.next-button').on('click', function(){
-	   		socket.emit('control', { command: 'next', id: idValue });
-	   	});
+		$(document).on('paste', "#input-tag", function(e) {
+			$(e.target).closest('form').submit();
+		});
 
-	   	$('.shuffle-button').on('click', function(){
-	   		$('.indic-keyword').removeClass('indic-active');
-	   		$('.indic-random').addClass('indic-active');
-	   		$('.gobutton').removeClass('cntrl_active');
-	   		$('#input-tag').val('');
-	   		$('.cur_playing span').html('Random');
-	   		socket.emit('control', { command: 'shuffle', id: idValue });
-	   	});
+		function useKeyword(keyword){
+			if(keyword == ''){
 
-	   	$('#unique-id').on('change', function(){
-	   		idValue = $('#unique-id').val();
-	   	});
+				$('.indic-keyword').removeClass('indic-active');
+				$('.indic-random').addClass('indic-active');
+				$('.gobutton').removeClass('cntrl_active');
+				$('.cur_playing span').html('Random');
+				socket.emit('control', { command: 'shuffle', id: idValue });
 
-	   	$("#input-tag").on("change paste keyup", function() {
-	   		$('.indic-random').removeClass('indic-active');
-	   		$('.indic-keyword').addClass('indic-active');
-	      	$('.gobutton').addClass('cntrl_active');
-	      	var keyword = $('#input-tag').val();
-	      	$('.cur_playing span').html(keyword);
-	      	socket.emit('control', { command: 'keyword', keyword: keyword, id: idValue });
-	   	});
+			}else{
+
+				$('.indic-random').removeClass('indic-active');
+				$('.indic-keyword').addClass('indic-active');
+				$('.gobutton').addClass('cntrl_active');
+				$('.cur_playing span').html(keyword);
+				socket.emit('control', { command: 'keyword', keyword: keyword, id: idValue });
+
+			}
+
+		}
+
+		//Enter button to apply custom tag
+		$(document).on('keydown', 'input', function(e){
+			if (e.keyCode == 13){
+				$(e.currentTarget).blur().closest('form').submit();
+			}
+		});
+
+		$(document).on('submit', 'form', function(evt){
+			evt.preventDefault();
+
+			var keyword = $('#input-tag').val();
+			useKeyword(keyword);
+		});
 
 	 </script>
 </body>

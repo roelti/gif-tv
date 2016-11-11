@@ -1,6 +1,5 @@
 var fullscreen = false;
 
-// Find the right method, call on correct element
 function launchFullscreen(element) {
   if(element.requestFullscreen) {
     element.requestFullscreen();
@@ -23,71 +22,116 @@ function exitFullscreen() {
   }
 }
 
-// Set vars for images
-$(document).ready(function(){
-	var background_image_1 = "";	
-	var background_image_2 = "";
-	var title = '';
-	var term = 'Random GIFs';
+function assign_bootstrap_mode() {
+    width = $( window ).width();
+    var mode = '';
+    if (width<768) {
+        mode = "mode-xs";
+    }
+    else if (width<992) {
+        mode = "mode-sm";
+    }
+    else if (width<1200) {
+        mode = "mode-md";
+    }
+    else if (width>1200) {
+        mode = "mode-lg";
+    }
+    if (mode == 'mode-xs'){
+    	window.location.replace("/mobile.html"); 
+    }
+}
 
-	$.getJSON("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + term, function(data){
-		background_image_1 = data.data.image_url
-		$('.image_1').attr("src",data.data.image_url);
-		$('body').css("background-image","url(" + data.data.image_url + ")");
-		});
+// Show bar when mouse moves
+function mousemover(e){
+	$('body').addClass('show-tag');
+	if(runningTimeout!==null){
+		clearTimeout(runningTimeout);
+		runningTimeout=null;
+	}
 
-		$.getJSON("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + term, function(data){
-			background_image_2 = data.data.image_url
-		$('.image_2').attr("src",data.data.image_url);
-		});
+	runningTimeout = setTimeout(function(){ 
+		$('body').removeClass('show-tag');
+		runningTimeout = null;
+	}, 5000);
+}
+var runningTimeout = null;
 
-	// Set cycle to switch images
-	function cycle(){ 
+function applyClass(e){
+	$('body').removeClass('show-tag');
+	$('body').unbind('mousemove');
+	runningTimeout = setTimeout(function(){
+		$('body').bind('mousemove', mousemover);
+	}, 1000);
+}
+
+var background_image_1 = "";	
+var background_image_2 = "";
+var title = '';
+var term = '';
+
+// Set cycle to switch images
+function cycle(){ 
+	render(term);
+}
+
+function render(term){
+	var url = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC";
+
+	if(term){
+		term += "&tag=" + encodeURIComponent(term);
+	}
+
+	$.getJSON(url, function(data){
+		var imgUrl = data.data.image_url;
+
 		if($('.image_1').css("z-index") == "10") {
-				$('.image_1').css("z-index", "-1"); 
-				$('.image_2').css("z-index", "10");
-				$.getJSON("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + term, function(data){
-				background_image_1 = data.data.image_url
-				$('.image_1').attr("src",data.data.image_url);
-				$('body').css("background-image","url(" + background_image_2 + ")");
-				
-			});
+			$('.image_1').css("z-index", "-1"); 
+			$('.image_2').css("z-index", "10");
+			background_image_1 = imgUrl;
+			$('.image_1').attr("src",imgUrl);
+			$('body').css("background-image","url(" + background_image_2 + ")");
+		} else {	
+			$('.image_2').css("z-index", "-1"); 
+			$('.image_1').css("z-index", "10");
+  			background_image_2 = imgUrl
+    		$('.image_2').attr("src",imgUrl);
+	    	$('body').css("background-image","url(" + background_image_1 + ")"); 
 		}
-		else {
-				$.getJSON("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + term, function(data){
-				$('.image_2').css("z-index", "-1"); 
-				$('.image_1').css("z-index", "10");
-		  		background_image_2 = data.data.image_url
-		    	$('.image_2').attr("src",data.data.image_url);
-		    	$('body').css("background-image","url(" + background_image_1 + ")"); 
-	  		});
-			}
+
+	});
+}
+
+//Function to apply custom tag
+function customTag(keyword){
+	applyClass();
+	term = keyword;
+	if (term == ''){
+		document.title = 'Random GIFs';
+		$(".keywordmode").removeClass('active');
+		$(".change-button").removeClass('active');
+		$(".randommode").addClass('active');
+		$(".input_controls").addClass('hidden');
+		$('body').find('.popup').addClass('hidden');
+	}
+	else {
+		document.title = ' Now playing: ' + term + ' GIFs';
+		$(".randommode").removeClass('active');
+		$(".change-button").addClass('active');
+		$(".keywordmode").addClass('active');
+		$('body').find('.popup').addClass('hidden');
 	}
 
-	// Screensize
+	render(term);
+}
 
-	function assign_bootstrap_mode() {
-	    width = $( window ).width();
-	    var mode = '';
-	    if (width<768) {
-	        mode = "mode-xs";
-	    }
-	    else if (width<992) {
-	        mode = "mode-sm";
-	    }
-	    else if (width<1200) {
-	        mode = "mode-md";
-	    }
-	    else if (width>1200) {
-	        mode = "mode-lg";
-	    }
-	    if (mode == 'mode-xs'){
-	    	window.location.replace("/mobile.html"); 
-	    }
-	}
+// Set interval to 10s
+setInterval(cycle, 10000);
+
+$(document).ready(function(){
+
+	render(term);
 	assign_bootstrap_mode();
-
-
 
 	// Set fullscreen button
 	$(".fullscreen-button").click(function(element){
@@ -103,62 +147,7 @@ $(document).ready(function(){
 		}
 	});
 
-	// Show bar when mouse moves
-	function mousemover(e){
-		$('body').addClass('show-tag');
-		if(runningTimeout!==null){
-			clearTimeout(runningTimeout);
-			runningTimeout=null;
-		}
-
-		runningTimeout = setTimeout(function(){ 
-			$('body').removeClass('show-tag');
-			runningTimeout = null;
-		}, 5000);
-	}
-
-	var runningTimeout = null;
 	$( "body" ).mousemove(mousemover);
-
-	function applyClass(e){
-		$('body').removeClass('show-tag');
-		$('body').unbind('mousemove');
-		runningTimeout = setTimeout(function(){
-			$('body').bind('mousemove', mousemover);
-		}, 1000);
-	}
-
-	//Function to apply custom tag
-
-	function customTag(){
-		applyClass();
-		term = $("input").val();
-		if (term == ''){
-			document.title = 'Random GIFs';
-			$(".keywordmode").removeClass('active');
-			$(".change-button").removeClass('active');
-			$(".randommode").addClass('active');
-			$(".input_controls").addClass('hidden');
-			$('body').find('.popup').addClass('hidden');
-		}
-		else {
-			document.title = ' Now playing: ' + term + ' GIFs';
-			$(".randommode").removeClass('active');
-			$(".change-button").addClass('active');
-			$(".keywordmode").addClass('active');
-			$('body').find('.popup').addClass('hidden');
-		}
-		$.getJSON("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + term, function(data){
-			background_image_1 = data.data.image_url
-			$('.image_1').attr("src",data.data.image_url);
-			$('body').css("background-image","url(" + data.data.image_url + ")");
-		});
-
-		$.getJSON("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + term, function(data){
-			background_image_2 = data.data.image_url
-			$('.image_2').attr("src",data.data.image_url);
-		});
-	}
 
 	$('.mo-closebtn').on('click', function(){
    		$('body').find('.popup').addClass('hidden');
@@ -169,7 +158,6 @@ $(document).ready(function(){
    	});
 
 	//Button to apply custom tag
-
 	$(".keywordmode").click(function(e){
 		$(".input_controls").removeClass('hidden');
 		$(".randommode").removeClass('active');
@@ -178,28 +166,24 @@ $(document).ready(function(){
 	});
 
 	$(".change-button").click(function(e){
-		customTag();	
+		customTag($("input").val());	
 	});
 
 	//Enter button to apply custom tag
-
 	$('input').on('keydown', function(e){
 		if (e.keyCode == 13){
-			customTag();
+			customTag($("input").val());
 		}
 	});
 
 	// Back to random GIF's
-
 	$(".randommode").click(function(e){
 		$("input").val('');
-		customTag();
+		customTag('');
 	});
-
-	// Set interval to 10s
-	setInterval(cycle, 10000);
 	
 	$('.gif').click(cycle);
+
 });
 
 

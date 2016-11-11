@@ -8,7 +8,8 @@
 
 <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="https://use.fontawesome.com/abc753b90a.js"></script>
-<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<!-- <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script> -->
+<script src="/socket.io/socket.io.js"></script>
 
 <!-- Favicon -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -78,7 +79,7 @@
 
 	
 	<div class="madeby">
-		Made by <a href="https://twitter.com/roeltinkhof" target="_blank">Roel Tinkhof</a> & <a href="https://www.studioseptember.nl" target="_blank">Studio September</a>
+		Made by <a href="https://twitter.com/roeltinkhof" target="_blank">Roel Tinkhof</a> &amp; <a href="https://www.studioseptember.nl" target="_blank">Studio September</a>
 		<img class="powered-by" src="dist/images/giphy.png">
 	</div>
 	<a href="http://www.studioseptember.nl" target="_blank"><img class="logo" src="dist/images/september.png"></a>
@@ -90,30 +91,15 @@
 	    var socket = io();
 
 	    socket.on('connect', function (data) {
-	     	socket.emit('desktop connect');
+	     	socket.emit('Get ID');
 	    });
 
 	    socket.on('unique id', function (event) {
-	    	console.log(event);
 	    	$('.unique_id').text('ID = ' + event.id);
 	    });
 
-	    // socket.on('next click', function (event) {
-	   	// 	console.log(event);
-	   	// 	$('.gif').click();
-	    // });
-	    // socket.on('shuffle click', function (event) {
-	   	// 	console.log(event);
-	   	// 	$(".reset-button").click();	
-	    // });
-	    // socket.on('tag click', function (event) {
-    	// 	console.log(event);
-    	// 	$('#tag-input').val(event.mobileinput);
-    	// 	$(".change-button").click();
-	    // });
-
 	    socket.on('control', function (data) {
-	    	console.log('control', data);
+	    	// console.log('control', data);
 	    	switch(data.command){
 	    		case 'next':
 		    		$('.gif').click();
