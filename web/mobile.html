@@ -2,10 +2,13 @@
 <html class="mobile_site">
 <head>
 <title>Random GIF TV Mobile</title>
-<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700" rel="stylesheet">
 <link rel="stylesheet" href="dist/css/style.css">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="width=device-width, user-scalable=no">
+
 <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="https://use.fontawesome.com/abc753b90a.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
@@ -24,7 +27,11 @@
 
 	<div class="mo-popup">
 		<div class="mo-closebtn">
-			<i class="fa fa-times" aria-hidden="true"></i>
+			<div class="closer">
+				<span></span>
+				<span></span>
+			</div>
+			
 		</div>
 		<div class="mo-popup--content">
 			<div class="id">
@@ -36,14 +43,21 @@
 	</div>
 
 
-	
+	<div class="mo-logo">
+		<img src="/dist/images/gifmetv_logo_grey.gif" alt="">
+	</div>
 
 	<div class="inputfield-tag">
 		<input id="input-tag" class="mobile-input" type="text" name="Fill in tag" placeholder="Keyword">
+		<div class="indicator">
+			<span class="indic-keyword">Keyword</span>
+			<span class="indic-random indic-active"><i class="fa fa-random" aria-hidden="true"></i></span>
+		</div>
 	</div>
+	<div class="cur_playing">Now playing: <span>Random</span> GIFs</div>
 	<div class="mo-inputcontrols">
 		<div class="gobutton">
-			<div class="input-go"><span>Start</span></div>
+			<div class="input-go"><span>Keyword</span></div>
 		</div>
 		<div class="idbutton">
 			<div class="input-id"><span>ID</span></div>
@@ -84,20 +98,33 @@
 	   	$('.next-button').on('click', function(){
 	   		socket.emit('next_click', { my: 'next button', id: idValue });
 	   	});
-	   $('.shuffle-button').on('click', function(){
+
+	   	$('.shuffle-button').on('click', function(){
+	   		$('.indic-keyword').removeClass('indic-active');
+	   		$('.indic-random').addClass('indic-active');
+	   		$('.gobutton').removeClass('cntrl_active');
+	   		$('#input-tag').val('');
+	   		$('.cur_playing span').html('Random');
 	   		socket.emit('shuffle_click', { my: 'shuffle', id: idValue });
-	   });
-	   $('.input-go').on('click', function(){
+	   	});
+
+	   	$('.input-go').on('click', function(){
 	   		input = $('#input-tag').val();
 	   		socket.emit('tag_click', { my: input, id: idValue });
-	   });
-	   $('#unique-id').on('change', function(){
+	   	});
+
+	   	$('#unique-id').on('change', function(){
 	   		idValue = $('#unique-id').val();
-	   		
-	   });
-	   $("#input-tag").on("change paste keyup", function() {
-	      $('.gobutton').addClass('cntrl_active');
-	   });
+	   	});
+
+	   	$("#input-tag").on("change paste keyup", function() {
+	   		$('.indic-random').removeClass('indic-active');
+	   		$('.indic-keyword').addClass('indic-active');
+	      	$('.gobutton').addClass('cntrl_active');
+	      	var keyword = $('#input-tag').val();
+	      	$('.cur_playing span').html(keyword);
+	      	socket.emit('tag_click', { my: keyword, id: idValue });
+	   	});
 
 	 </script>
 </body>

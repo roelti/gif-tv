@@ -129,7 +129,7 @@ input:focus{
 }
 
 .controls{
-	padding-left: 240px;
+	padding-left: 280px;
 }
 
 span{
@@ -162,16 +162,18 @@ span{
 
 .title{
 	position: absolute;
-	display:inline;
+	display:table;
+	height: 100%;
 	color: white;
 	text-align: left;
 	font-size: 20px;
-	padding-left: 20px;
-	top: 25%;
-	left: 20px;
+	top: 0;
+    left: 15px;
 	span{
+		display: table-cell;
 		color: white;
-		padding-left: 25px;
+		padding-left: 5px;
+		vertical-align: middle;	
 	}
 }
 
@@ -266,8 +268,10 @@ body.show-tag .madeby {
 }
 
 .tv{
-	height: 22px;
-	width: 22px;
+    height: 35px;
+    width: auto;
+    display: table-cell;
+    padding-top: 6px;
 }
 
 /*Popup*/
@@ -299,23 +303,8 @@ body.show-tag .madeby {
 	}
 }
 
-.desktop .closebtn{
-	top: 0px;
-	right: 10px;
-}
-
 .desktop .popup--content{
 
-}
-
-.closebtn{
-	position: absolute;
-	top: -20px;
-	right: 20px;
-	font-size: 38px;
-	color: white;
-	cursor: pointer;
-	z-index: 200;
 }
 
 .hidden{
@@ -334,6 +323,15 @@ body.show-tag .madeby {
 	height: 100%;
 	text-align: center;
     background-color: transparent;
+}
+
+.cur_playing{
+	color: white;
+	padding-bottom: 10px;
+	span{
+		font-size: 14px;
+		text-transform: uppercase;
+	}
 }
 
 .mo-controls{
@@ -396,10 +394,11 @@ body.show-tag .madeby {
 }
 
 .inputfield-tag{
+	position: relative;
 	width: 100%;
 	text-align: center;
 	margin-bottom: 10px;
-	padding-top: 50px;
+	padding-top: 20px;
 }
 
 #input-tag{
@@ -420,6 +419,27 @@ body.show-tag .madeby {
 		outline: none;
 		box-shadow: none;
 	}
+}
+
+.indicator{
+	position: absolute;
+	bottom: 60px;
+    right: 12%;
+}
+
+.indic-keyword, .indic-random{
+	color: #000000;
+	opacity: 0.15;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.indic-active{
+	opacity: 1;
 }
 
 .giftv-logo{
@@ -507,6 +527,9 @@ body.show-tag .madeby {
 	a{
 		text-decoration: none;
 		color: #5a5a5a;
+		font-family: 'Roboto Condensed', sans-serif;
+		font-weight: bold;
+		text-transform: uppercase;
 	}
 }
 
@@ -534,12 +557,40 @@ body.show-tag .madeby {
 
 .mo-closebtn {
     position: absolute;
-    top: 0px;
+    width: 30px;
+    height: 30px;
+    top: 5px;
     right: 20px;
     font-size: 38px;
     color: white;
     cursor: pointer;
     z-index: 200;
+    .closer{
+    	display: block;
+    	transform: translateY(50%);
+    	position: relative;
+    	height: 30px;
+    	width: 30px;
+    }
+    span{
+    	display: block;
+    	height: 1px;
+    	width: 100%;
+    	background-color: white;
+    }
+    span:nth-child(1){
+    	transform: rotate(-45deg) translate(0, -50%);
+    }
+    span:nth-child(2){
+    	transform: rotate(45deg) translate(0, -50%);
+    }
+}
+
+.mo-logo{
+	img{
+		width: 80%;
+		height: auto
+	}
 }
 
 
