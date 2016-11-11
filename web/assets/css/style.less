@@ -201,11 +201,10 @@ span{
 	transition-property: transform;
 	transition-duration: 0.5s;
 	line-height: 40px;
-}
-
-.madeby a{
-	text-decoration: none;
-	color: white;
+	a{
+		text-decoration: none;
+		color: white;
+	}
 }
 
 body.show-tag .madeby {
@@ -429,17 +428,15 @@ body.show-tag .madeby {
 	text-align: center;
 	position: relative;
 	color: white;
-}
-
-.giftv-logo span{
-	padding: 0;
-	font-size: 40px;
-	line-height: 40px;
-}
-
-.giftv-logo img{
-	height: 100%;
-	width: auto;
+	span{
+		padding: 0;
+		font-size: 40px;
+		line-height: 40px;
+	}
+	img{
+		height: 100%;
+		width: auto;
+	}
 }
 
 .mo-inputcontrols{
@@ -452,18 +449,6 @@ body.show-tag .madeby {
     padding-bottom: 10px;
 }
 
-.idbutton span{
-	display: block;
-	color: white;
-	transform: translateY(35px);
-}
-
-.gobutton span{
-	display: block;
-	color: white;
-	transform: translateY(31px);
-}
-
 .gobutton, .idbutton{
 	display: inline-block;
 	text-align: center;
@@ -472,20 +457,30 @@ body.show-tag .madeby {
 	background-image: url('../images/smallbutton.svg');
     background-repeat: no-repeat;
     cursor: pointer;
+    span{
+    	display: block;
+    	color: white;
+    }
 }
 
 .gobutton{
 	margin-right: 10px;
     transform: translateY(4px);
-}
-
-.cntrl_active{
-	background-image: url('../images/smallbutton_mo.svg');
+    span{
+    	transform: translateY(31px);
+    }
 }
 
 .idbutton{
 	transform: translateY(0px);
 	margin-left: 10px;
+	span{
+		transform: translateY(35px);
+	}
+}
+
+.cntrl_active{
+	background-image: url('../images/smallbutton_mo.svg');
 }
 
 .input-go{
@@ -509,11 +504,10 @@ body.show-tag .madeby {
 	color: #5a5a5a;
 	width: 100%;
 	text-align: center;
-}
-
-.mo-madeby a{
-	text-decoration: none;
-	color: #5a5a5a;
+	a{
+		text-decoration: none;
+		color: #5a5a5a;
+	}
 }
 
 .mo-popup{
