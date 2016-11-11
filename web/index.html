@@ -89,9 +89,8 @@
 
 	    var socket = io();
 
-	    socket.on('server connect', function (data) {
-	     	console.log(data);
-	     	socket.emit('desktop connect', { my: 'desktop connected' });
+	    socket.on('connect', function (data) {
+	     	socket.emit('desktop connect');
 	    });
 
 	    socket.on('unique id', function (event) {
@@ -99,19 +98,36 @@
 	    	$('.unique_id').text('ID = ' + event.id);
 	    });
 
-	    socket.on('next click', function (event) {
-	   		console.log(event);
-	   		$('.gif').click();
+	    // socket.on('next click', function (event) {
+	   	// 	console.log(event);
+	   	// 	$('.gif').click();
+	    // });
+	    // socket.on('shuffle click', function (event) {
+	   	// 	console.log(event);
+	   	// 	$(".reset-button").click();	
+	    // });
+	    // socket.on('tag click', function (event) {
+    	// 	console.log(event);
+    	// 	$('#tag-input').val(event.mobileinput);
+    	// 	$(".change-button").click();
+	    // });
+
+	    socket.on('control', function (data) {
+	    	console.log('control', data);
+	    	switch(data.command){
+	    		case 'next':
+		    		$('.gif').click();
+		    		break;
+		    	case 'shuffle':
+		    		$(".randommode").click();
+		    		break;
+		    	case 'keyword':
+		    		$('#tag-input').val(data.keyword);
+		    		$(".change-button").click();
+		    		break;
+		    }
 	    });
-	    socket.on('shuffle click', function (event) {
-	   		console.log(event);
-	   		$(".reset-button").click();	
-	    });
-	     socket.on('tag click', function (event) {
-	    		console.log(event);
-	    		$('#tag-input').val(event.mobileinput);
-	    		$(".change-button").click();
-	     });
+
 	 </script>
 
 </body>

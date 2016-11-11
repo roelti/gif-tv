@@ -152,15 +152,15 @@ $(document).ready(function(){
 			background_image_1 = data.data.image_url
 			$('.image_1').attr("src",data.data.image_url);
 			$('body').css("background-image","url(" + data.data.image_url + ")");
-			});
+		});
 
 		$.getJSON("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + term, function(data){
 			background_image_2 = data.data.image_url
 			$('.image_2').attr("src",data.data.image_url);
-			});
+		});
 	}
 
-	$('.closebtn').on('click', function(){
+	$('.mo-closebtn').on('click', function(){
    		$('body').find('.popup').addClass('hidden');
    	});
 

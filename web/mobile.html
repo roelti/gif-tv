@@ -75,7 +75,7 @@
 	</div>
 
 	<div class="mo-madeby">
-		<a href="https://twitter.com/roeltinkhof" target="_blank">Roel Tinkhof</a> & <a href="https://www.studioseptember.nl" target="_blank">Studio September</a>
+		<a href="https://twitter.com/roeltinkhof" target="_blank">Roel Tinkhof</a> &amp; <a href="https://www.studioseptember.nl" target="_blank">Studio September</a>
 	</div>
 	
 
@@ -89,14 +89,10 @@
 	   		$('.mo-popup').removeClass('hidden');
 	   	});
 
-	   	var socket = io('http://giphy.roel:4000');
-	   	socket.on('server connect', function (data) {
-	     	console.log(data);
-	     	socket.emit('mobile_connection', { my: 'mobile loaded' });
-	   	});
+	   	var socket = io();
 
 	   	$('.next-button').on('click', function(){
-	   		socket.emit('next_click', { my: 'next button', id: idValue });
+	   		socket.emit('control', { command: 'next', id: idValue });
 	   	});
 
 	   	$('.shuffle-button').on('click', function(){
@@ -105,12 +101,7 @@
 	   		$('.gobutton').removeClass('cntrl_active');
 	   		$('#input-tag').val('');
 	   		$('.cur_playing span').html('Random');
-	   		socket.emit('shuffle_click', { my: 'shuffle', id: idValue });
-	   	});
-
-	   	$('.input-go').on('click', function(){
-	   		input = $('#input-tag').val();
-	   		socket.emit('tag_click', { my: input, id: idValue });
+	   		socket.emit('control', { command: 'shuffle', id: idValue });
 	   	});
 
 	   	$('#unique-id').on('change', function(){
@@ -123,7 +114,7 @@
 	      	$('.gobutton').addClass('cntrl_active');
 	      	var keyword = $('#input-tag').val();
 	      	$('.cur_playing span').html(keyword);
-	      	socket.emit('tag_click', { my: keyword, id: idValue });
+	      	socket.emit('control', { command: 'keyword', keyword: keyword, id: idValue });
 	   	});
 
 	 </script>

@@ -53,7 +53,7 @@ gulp.task('less', function () {
     
     .pipe(cssnano())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./dist/css/'))
+    .pipe(gulp.dest('./web/dist/css/'))
     .pipe(browserSync.reload({ // Reloading with Browser Sync
       stream: true
     }));
@@ -73,7 +73,7 @@ gulp.task('build-js', ['jshint'], function() {
       .pipe(concat('main.js'))
       .pipe(uglify()) 
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('dist/scripts/'));
+    .pipe(gulp.dest('web/dist/scripts/'));
 });
 
 //Image tasks
@@ -81,7 +81,7 @@ gulp.task('images', function() {
   console.log('Building images..');
   gulp.src('assets/images/*')
     .pipe(imagemin())
-  .pipe(gulp.dest('dist/images'))
+  .pipe(gulp.dest('web/dist/images'))
 });
 
 //Watch task
@@ -95,7 +95,7 @@ gulp.task('watch', ['browserSync', 'less', 'jshint', 'build-js'], function (){
 
 //Cleaner task
 gulp.task('cleaner', function() {
-  return del.sync('dist');
+  return del.sync('web/dist');
 });
 
 //Build
