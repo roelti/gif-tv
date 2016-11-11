@@ -44,24 +44,31 @@ function assign_bootstrap_mode() {
 
 // Show bar when mouse moves
 function mousemover(e){
+	if(barSuppressed){
+		return;
+	}
 	$('body').addClass('show-tag');
 	if(runningTimeout!==null){
 		clearTimeout(runningTimeout);
 		runningTimeout=null;
 	}
-
-	runningTimeout = setTimeout(function(){ 
-		$('body').removeClass('show-tag');
-		runningTimeout = null;
-	}, 5000);
+	if (!forceBar) {
+		runningTimeout = setTimeout(function(){ 
+			$('body').removeClass('show-tag');
+			runningTimeout = null;
+		}, 5000);
+	}
 }
 var runningTimeout = null;
 
-function applyClass(e){
+var forceBar = false;
+var barSuppressed = false;
+
+function supressBar(e){
 	$('body').removeClass('show-tag');
-	$('body').unbind('mousemove');
+	barSuppressed = true;
 	runningTimeout = setTimeout(function(){
-		$('body').bind('mousemove', mousemover);
+		barSuppressed = false;
 	}, 1000);
 }
 
@@ -104,7 +111,7 @@ function render(term){
 
 //Function to apply custom tag
 function customTag(keyword){
-	applyClass();
+	supressBar();
 	term = keyword;
 	if (term == ''){
 		document.title = 'Random GIFs';
@@ -150,6 +157,7 @@ $(document).ready(function(){
 	});
 
 	$( "body" ).mousemove(mousemover);
+	$('#tag-input').keypress(mousemover);
 
 	$('.mo-closebtn').on('click', function(){
    		$('body').find('.popup').addClass('hidden');
@@ -185,6 +193,15 @@ $(document).ready(function(){
 	});
 	
 	$('.gif').click(cycle);
+
+	$('#tag-input').on('focus', function(){
+		forceBar = true;
+	});
+
+	$('#tag-input').on('blur', function(){
+		forceBar = false;
+		mousemover();
+	});
 
 });
 
