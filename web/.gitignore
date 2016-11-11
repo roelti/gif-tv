@@ -1,3 +1,4 @@
 # Application
 node_modules
 .vagrant
+web/dist
