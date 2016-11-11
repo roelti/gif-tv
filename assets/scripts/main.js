@@ -79,12 +79,12 @@ function render(term){
 	var url = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC";
 
 	if(term){
-		term += "&tag=" + encodeURIComponent(term);
+		url += "&tag=" + encodeURIComponent(term);
 	}
 
 	$.getJSON(url, function(data){
 		var imgUrl = data.data.image_url;
-
+		imgUrl = imgUrl.replace('http://', 'https://');
 		if($('.image_1').css("z-index") == "10") {
 			$('.image_1').css("z-index", "-1"); 
 			$('.image_2').css("z-index", "10");
@@ -131,6 +131,8 @@ setInterval(cycle, 10000);
 $(document).ready(function(){
 
 	render(term);
+	render(term);
+
 	assign_bootstrap_mode();
 
 	// Set fullscreen button
