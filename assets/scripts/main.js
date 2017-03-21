@@ -82,15 +82,17 @@ function cycle(){
 	render(term);
 }
 
+var counter = 0;
 function render(term){
-	var url = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC";
+	var url = "https://api.tenor.co/v1/trending?key=LIVDSRZULELA";
 
 	if(term){
-		url += "&tag=" + encodeURIComponent(term);
+		url = 'https://api.tenor.co/v1/search?tag=' + encodeURIComponent(term) + '&key=LIVDSRZULELA';
 	}
 
 	$.getJSON(url, function(data){
-		var imgUrl = data.data.image_url;
+		console.log(data, counter);
+		var imgUrl = data.results[counter].media[0].gif.url;
 		imgUrl = imgUrl.replace('http://', 'https://');
 		if($('.image_1').css("z-index") == "10") {
 			$('.image_1').css("z-index", "-1"); 
@@ -107,6 +109,8 @@ function render(term){
 		}
 
 	});
+	
+	counter++; 
 }
 
 //Function to apply custom tag
