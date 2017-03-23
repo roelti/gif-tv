@@ -85,16 +85,14 @@ function cycle(){
 var counter = 0;
 var pos = '';
 function render(term){
-	var url = "https://api.tenor.co/v1/trending?key=LIVDSRZULELA&pos=" + pos;
+	var url = 'https://api.tenor.co/v1/trending?key=LIVDSRZULELA&pos=' + '&pos=' + pos;
 	if (counter == 19){
 		counter = 0;
-		console.log('counter reset');
 	}
-	
-	console.log(pos, url);
 
 	if(term){
-		url = 'https://api.tenor.co/v1/search?tag=' + encodeURIComponent(term) + '&key=LIVDSRZULELA' + pos;
+		url = 'https://api.tenor.co/v1/search?tag=' + encodeURIComponent(term) + '&key=LIVDSRZULELA' + '&pos=' + pos;
+		console.log(url);
 	}
 
 	$.getJSON(url, function(data){
@@ -118,7 +116,6 @@ function render(term){
 		}
 		if (counter == 18) {
 			pos = data.next;
-			console.log(pos);
 		}
 	});
 
