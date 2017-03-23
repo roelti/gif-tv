@@ -83,16 +83,25 @@ function cycle(){
 }
 
 var counter = 0;
+var pos = '';
 function render(term){
-	var url = "https://api.tenor.co/v1/trending?key=LIVDSRZULELA";
+	var url = "https://api.tenor.co/v1/trending?key=LIVDSRZULELA&pos=" + pos;
+	if (counter == 19){
+		counter = 0;
+		console.log('counter reset');
+	}
+	
+	console.log(pos, url);
 
 	if(term){
-		url = 'https://api.tenor.co/v1/search?tag=' + encodeURIComponent(term) + '&key=LIVDSRZULELA';
+		url = 'https://api.tenor.co/v1/search?tag=' + encodeURIComponent(term) + '&key=LIVDSRZULELA' + pos;
 	}
 
 	$.getJSON(url, function(data){
-		console.log(data, counter);
+		
 		var imgUrl = data.results[counter].media[0].gif.url;
+
+		console.log(data, counter);
 		imgUrl = imgUrl.replace('http://', 'https://');
 		if($('.image_1').css("z-index") == "10") {
 			$('.image_1').css("z-index", "-1"); 
@@ -107,9 +116,12 @@ function render(term){
     		$('.image_2').attr("src",imgUrl);
 	    	$('body').css("background-image","url(" + background_image_1 + ")"); 
 		}
-
+		if (counter == 18) {
+			pos = data.next;
+			console.log(pos);
+		}
 	});
-	
+
 	counter++; 
 }
 
