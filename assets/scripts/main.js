@@ -85,43 +85,78 @@ function cycle(){
 var counter = 0;
 var pos = '';
 
+
+var gifs = [];
+var nextPos = '';
+
+var alreadyGetting = false;
+
+var prevTerm = null;
+
 //TODO: If counter = 0 dan getJSON en counter resetten bij term zoeken
 function render(term){
-	var url = 'https://api.tenor.co/v1/trending?key=LIVDSRZULELA&pos=' + '&pos=' + pos;
-	if (counter == 19){
-		counter = 0;
-	}
 
-	if(term){
-		url = 'https://api.tenor.co/v1/search?tag=' + encodeURIComponent(term) + '&key=LIVDSRZULELA' + '&pos=' + pos;
-		console.log(url);
-	}
+	console.log('render', term, gifs.length);
 
-	$.getJSON(url, function(data){
-		
-		var imgUrl = data.results[counter].media[0].gif.url;
 
-		console.log(data, counter);
-		imgUrl = imgUrl.replace('http://', 'https://');
+	if(gifs.length > 0){
+
+		var media = gifs.shift();
+		console.log('render:media', media);
+		var imgUrl = media.gif.url;
+
+		// console.log(data, counter);
+		//imgUrl = imgUrl.replace('http://', 'https://');
 		if($('.image_1').css("z-index") == "10") {
 			$('.image_1').css("z-index", "-1"); 
 			$('.image_2').css("z-index", "10");
 			background_image_1 = imgUrl;
 			$('.image_1').attr("src",imgUrl);
 			$('body').css("background-image","url(" + background_image_2 + ")");
+
 		} else {	
 			$('.image_2').css("z-index", "-1"); 
 			$('.image_1').css("z-index", "10");
-  			background_image_2 = imgUrl;
-    		$('.image_2').attr("src",imgUrl);
+				background_image_2 = imgUrl;
+			$('.image_2').attr("src",imgUrl);
 	    	$('body').css("background-image","url(" + background_image_1 + ")"); 
 		}
-		if (counter == 18) {
-			pos = data.next;
-		}
-	});
+	}
 
-	counter++; 
+	if(gifs.length == 0){
+		if(!alreadyGetting){
+
+
+			alreadyGetting = true;
+
+
+			var url = 'https://api.tenor.co/v1/search?key=LIVDSRZULELA' + '&pos=' + nextPos;
+			
+			if(term){
+				url += '&tag=' + encodeURIComponent(term);
+			}
+
+
+			console.log('render:get gifs', url);
+			$.getJSON(url, function(data){
+				alreadyGetting = false;
+				console.log('render:got gifs', data);
+				for(index in data.results){
+					var result = data.results[index];
+					gifs.push(result.media[0]);
+				}
+				nextPos = data.next;
+				render(term);
+
+				if(prevTerm != term){
+					prevTerm = term;
+					render(term);
+				}
+			});
+		}
+		
+	}
+
 }
 
 //Function to apply custom tag
@@ -143,16 +178,21 @@ function customTag(keyword){
 		$(".keywordmode").addClass('active');
 		$('body').find('.popup').addClass('hidden');
 	}
-	counter = 0;
+	
+	gifs = [];
+	nextPos = '';
+
+	clearInterval(cycleInterval);
+	cycleInterval = setInterval(cycle, 10000);
+
 	render(term);
 }
 
 // Set interval to 10s
-setInterval(cycle, 10000);
+var cycleInterval = setInterval(cycle, 10000);
 
 $(document).ready(function(){
 
-	render(term);
 	render(term);
 
 	assign_bootstrap_mode();
