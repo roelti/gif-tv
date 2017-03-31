@@ -31,7 +31,7 @@
 
 </head>
 <body class="mobile">
-
+	<div class="dimmer"></div>
 	<div class="mo-popup popup">
 		<div class="mo-popup--content popup--content">
 			<h2>Hi. This is your remote!</h2>
@@ -63,16 +63,18 @@
 	<!--
 		<div class="cur_playing">Now playing: <span>Random</span> GIFs</div>
 	-->
-	<div class="mo-inputcontrols">
+	
 		<!--
+		<div class="mo-inputcontrols">
 			<div class="gobutton">
 				<div class="input-go"><span>Keyword</span></div>
 			</div>
 			<div class="idbutton">
 				<div class="input-id"><span>ID</span></div>
 			</div>
+		</div>	
 		-->
-	</div>
+	
 	
 	
 	<div class="mo-controls">
@@ -109,8 +111,9 @@
 
 
 
-		$('.mo-closebtn').on('click', function(){
+		$('.btn-fix').on('click', function(){
 			$('.mo-popup').addClass('hidden');
+			$('.dimmer').addClass('dimmer--hidden');
 		});
 
 		$('.idbutton').on('click', function(){

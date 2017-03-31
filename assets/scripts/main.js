@@ -170,6 +170,7 @@ function render(term){
 
 //Function to apply custom tag
 function customTag(keyword){
+	
 	supressBar();
 	term = keyword;
 	if (term === ''){
