@@ -42,6 +42,8 @@ function assign_bootstrap_mode() {
     }
 }
 
+var forceBar = true;
+
 // Show bar when mouse moves
 function mousemover(e){
 	if(barSuppressed){
@@ -61,7 +63,7 @@ function mousemover(e){
 }
 var runningTimeout = null;
 
-var forceBar = false;
+
 var barSuppressed = false;
 
 function supressBar(e){
@@ -207,19 +209,24 @@ $(document).ready(function(){
 	// Set fullscreen button
 	$(".fullscreen-button").click(function(element){
 		if (fullscreen === false){
+			forcebar = true;
 			launchFullscreen(document.documentElement);
 			$('.fa-expand').removeClass('fa-expand').addClass('fa-compress');
 			fullscreen = true;
+			$('body').removeClass('show-tag');
 		}
 		else{
 			exitFullscreen(document.documentElement);
 			fullscreen = false;
 			$('.fa-compress').removeClass('fa-compress').addClass('fa-expand');
+			$('body').addClass('show-tag');
 		}
 	});
 
-	$( "body" ).mousemove(mousemover);
-	$('#tag-input').keypress(mousemover);
+	// if (fullscreen = true) {
+		$( "body" ).mousemove(mousemover);
+		$('#tag-input').keypress(mousemover);
+	// }
 
 	$('.mo-closebtn').on('click', function(){
    		$('body').find('.popup').addClass('hidden');
