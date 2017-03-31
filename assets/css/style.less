@@ -62,11 +62,11 @@ strong{
 	display: inline;
 	height: 20px;
 	padding: 5px 20px 5px 20px;
-	margin-left: 20px;
 	cursor: pointer;
-	border-radius: 2px;
 	color: black;
 	background-color: white;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-weight: bold;
 
 }
 
@@ -83,6 +83,19 @@ strong{
 }
 
 .reset-button{
+}
+
+.btn-fix {
+	width: 100%;
+	display: block;
+	margin:0;
+	margin-top: 15px;
+	text-align: center;
+	padding: 20px;
+	border: 0;
+	background: #efefef;
+	line-height: 20px;
+	height: auto;
 }
 
 .fullscreen-button{
@@ -126,7 +139,6 @@ strong{
 input {
 
 	background-color: white;
-	padding: 5px 5px 5px 5px;
 	width: 200px;
 	font-size: 16px;
 	border-radius: 2px;
@@ -450,20 +462,26 @@ body.show-tag .madeby {
 }
 
 .mobile-input{
+
 	width: 100%;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	text-align: center;
+
 }
 
-.inputfield-tag{
+.inputfield-tag {
+
 	position: relative;
 	width: 100%;
 	text-align: center;
 	margin-bottom: 10px;
 	padding-top: 20px;
+
 }
 
 #input-tag{
+
 	background-color: #C7C7B0;
 	width: 80%;
 	color: black;
@@ -477,10 +495,12 @@ body.show-tag .madeby {
 	border-bottom: 12px solid #404040;
 	font-family: 'Digital'; 
 	text-indent: 20px;
-	&:focus{
+
+	&:focus {
 		outline: none;
 		box-shadow: none;
 	}
+
 }
 
 .indicator{
@@ -572,11 +592,10 @@ body.show-tag .madeby {
 }
 
 .id{
-	max-width: 100px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
-	margin-bottom: 30px;
+
+	width: 100%;
+	margin: 15px 0;
+
 }
 
 .mo-madeby{
@@ -596,7 +615,6 @@ body.show-tag .madeby {
 
 .mo-popup{
 	width: 80%;
-    padding-bottom: 25px;
     position: fixed;
     left: 50%;
     top: 50%;
@@ -614,6 +632,11 @@ body.show-tag .madeby {
 	padding-right: 30px;
 	position: relative;
 	top: 30%;
+
+	p {
+		margin: 0;
+	}
+
 }
 
 .popup--content h2 {

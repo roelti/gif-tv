@@ -33,17 +33,18 @@
 <body class="mobile">
 
 	<div class="mo-popup popup">
-		<div class="mo-closebtn" aria-label="Close modal">
-			&times;			
-		</div>
 		<div class="mo-popup--content popup--content">
+			<h2>Hi. This is your remote!</h2>
+			<p><strong>Step 1.</strong> Enter the ID which is visible on the TV or screen.</p>
 			<div class="id">
-				<input id="unique-id" class="mobile-input" type="tel" placeholder="id">
+				<input id="unique-id" class="mobile-input" type="tel" placeholder="Your ID (4 digits)">
 			</div>
-			<p><strong>Step 1.</strong> Enter unique ID</p>
-			<p><strong>Step 2.</strong> Command the desktop GIF tv site by entering tags, clicking next or randomize everything.</p>
+			<p><strong>Step 2.</strong> That's it. Hit the button below.</p>
+			<button class="btn btn-fix">Show me the gifs!</button>
 		</div>
 	</div>
+
+	<div class="overlay">
 
 
 	<div class="mo-logo">
@@ -52,21 +53,25 @@
 
 	<div class="inputfield-tag">
 		<form>
-			<input id="input-tag" class="mobile-input" type="text" name="Fill in tag" placeholder="Keyword">
+			<input id="input-tag" class="mobile-input" type="text" name="Fill in tag" placeholder="Enter Keyword ...">
 			<div class="indicator">
 				<span class="indic-keyword">Keyword</span>
 				<span class="indic-random indic-active"><i class="fa fa-random" aria-hidden="true"></i></span>
 			</div>
 		</form>
 	</div>
-	<div class="cur_playing">Now playing: <span>Random</span> GIFs</div>
+	<!--
+		<div class="cur_playing">Now playing: <span>Random</span> GIFs</div>
+	-->
 	<div class="mo-inputcontrols">
-		<div class="gobutton">
-			<div class="input-go"><span>Keyword</span></div>
-		</div>
-		<div class="idbutton">
-			<div class="input-id"><span>ID</span></div>
-		</div>
+		<!--
+			<div class="gobutton">
+				<div class="input-go"><span>Keyword</span></div>
+			</div>
+			<div class="idbutton">
+				<div class="input-id"><span>ID</span></div>
+			</div>
+		-->
 	</div>
 	
 	
@@ -83,6 +88,7 @@
 		<a href="https://www.studioseptember.nl" target="_blank">Studio September</a>
 	</div>
 	
+	</div>
 
 	 <script>
 
