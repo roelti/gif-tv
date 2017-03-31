@@ -370,38 +370,33 @@ body.show-tag .madeby {
 	margin: 0;
 	width: 104px;
 	height: 104px;
+	border-radius: 104px;
 	cursor: pointer;
-	img{
-		width: 124px;
-		height: auto;
-	}
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+    	width: 40px;
+    	height: 40px;
+    	opacity: 0.8;
+    }
 }
 
 .shuffle-button{
 	bottom: 10px;
     left: 10px;
-    background-image: url('../images/blue.svg');
+    background-color: red;
     &:focus, &:active, &:hover{
-    		background-image: url('../images/blue_mo.svg');
-    		width: 124px;
-    		height: 124px;
-    		bottom: 0;
-    	    left: 0;
-    	    background-position: center center;
+		background-color: yellow;
     }
 }
 
 .next-button{
     top: 10px;
     right: 10px;
-    background-image: url('../images/yellow.svg');
+    background-color: blue;
     &:focus, &:active, &:hover{
-    		background-image: url('../images/yellow_mo.svg');
-    		width: 124px;
-    		height: 124px;
-    		top: 0;
-    	    right: 0;
-    	    background-position: center center;
+		background-color: yellow;
     }
 }
 

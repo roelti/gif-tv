@@ -82,38 +82,95 @@ function cycle(){
 	render(term);
 }
 
+var counter = 0;
+var pos = '';
+
+
+var gifs = [];
+var nextPos = '';
+
+var alreadyGetting = false;
+
+var prevTerm = null;
+
+//TODO: If counter = 0 dan getJSON en counter resetten bij term zoeken
 function render(term){
-	var url = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC";
 
-	if(term){
-		url += "&tag=" + encodeURIComponent(term);
-	}
+	
 
-	$.getJSON(url, function(data){
-		var imgUrl = data.data.image_url;
-		imgUrl = imgUrl.replace('http://', 'https://');
+
+	if(gifs.length > 0){
+
+		var media = gifs.shift();
+		
+		var imgUrl = media.gif.url;
+
+		// console.log(data, counter);
+		//imgUrl = imgUrl.replace('http://', 'https://');
 		if($('.image_1').css("z-index") == "10") {
 			$('.image_1').css("z-index", "-1"); 
 			$('.image_2').css("z-index", "10");
 			background_image_1 = imgUrl;
 			$('.image_1').attr("src",imgUrl);
 			$('body').css("background-image","url(" + background_image_2 + ")");
+
 		} else {	
 			$('.image_2').css("z-index", "-1"); 
 			$('.image_1').css("z-index", "10");
-  			background_image_2 = imgUrl
-    		$('.image_2').attr("src",imgUrl);
+				background_image_2 = imgUrl;
+			$('.image_2').attr("src",imgUrl);
 	    	$('body').css("background-image","url(" + background_image_1 + ")"); 
 		}
+	}
 
-	});
+	if(gifs.length == 0){
+		if(!alreadyGetting){
+
+
+			alreadyGetting = true;
+
+			var mode = 'trending';
+			if(term){
+				mode = 'search';
+			}
+
+			var url = 'https://api.tenor.co/v1/' + mode + '?key=LIVDSRZULELA' + '&pos=' + nextPos;
+			
+			if(term){
+				url += '&tag=' + encodeURIComponent(term);
+			}
+
+
+			$.getJSON(url, function(data){
+				alreadyGetting = false;
+				
+				for(index in data.results){
+					var result = data.results[index];
+					gifs.push(result.media[0]);
+				}
+				nextPos = data.next;
+				
+				if (data.results.length > 0) {
+					render(term);
+
+					if(prevTerm != term){
+						prevTerm = term;
+						render(term);
+					}
+				} 
+				
+			});
+		}
+		
+	}
+
 }
 
 //Function to apply custom tag
 function customTag(keyword){
 	supressBar();
 	term = keyword;
-	if (term == ''){
+	if (term === ''){
 		document.title = 'Random GIFs';
 		$(".keywordmode").removeClass('active');
 		$(".change-button").removeClass('active');
@@ -128,23 +185,28 @@ function customTag(keyword){
 		$(".keywordmode").addClass('active');
 		$('body').find('.popup').addClass('hidden');
 	}
+	
+	gifs = [];
+	nextPos = '';
+
+	clearInterval(cycleInterval);
+	cycleInterval = setInterval(cycle, 10000);
 
 	render(term);
 }
 
 // Set interval to 10s
-setInterval(cycle, 10000);
+var cycleInterval = setInterval(cycle, 10000);
 
 $(document).ready(function(){
 
-	render(term);
 	render(term);
 
 	assign_bootstrap_mode();
 
 	// Set fullscreen button
 	$(".fullscreen-button").click(function(element){
-		if (fullscreen == false){
+		if (fullscreen === false){
 			launchFullscreen(document.documentElement);
 			$('.fa-expand').removeClass('fa-expand').addClass('fa-compress');
 			fullscreen = true;
