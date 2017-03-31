@@ -45,6 +45,10 @@ html{
 	-webkit-font-smoothing: antialiased;
 }
 
+strong{
+	font-weight: 800;
+}
+
 .desktop{
 
 	cursor: none;
@@ -379,7 +383,7 @@ body.show-tag .madeby {
 .mobile{
 	height: 100%;
 	text-align: center;
-    background-color: transparent;
+    background-color: rgb(45,45,45);
 }
 
 .cur_playing{
@@ -424,18 +428,18 @@ body.show-tag .madeby {
 .shuffle-button{
 	bottom: 10px;
     left: 10px;
-    background-color: red;
+    background-color: @blue;
     &:focus, &:active, &:hover{
-		background-color: yellow;
+		background-color: @pink;
     }
 }
 
 .next-button{
     top: 10px;
     right: 10px;
-    background-color: blue;
+    background-color: @green;
     &:focus, &:active, &:hover{
-		background-color: yellow;
+		background-color: @pink;
     }
 }
 
@@ -592,14 +596,13 @@ body.show-tag .madeby {
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
-    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .mo-popup--content{
 
 	text-align: left;
 	opacity: 1;
-	color: white;
+	color: black;
 	padding-top: 10px;
 	padding-left: 30px;
 	padding-right: 30px;
