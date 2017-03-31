@@ -39,8 +39,7 @@
 			<h2>Wut?</h2>
 			<p>Ever had your TV being a boring object in your room during a party? Not anymore. Just a bunch of random gifs playing fullscreen. You can either go for full randomness or for keyword randomness.</p><p>You can also control via your mobile phone!</p>
 			<div class="popup--dasher">
-				<p>Go to <span>gifme.tv/mobile</span>
-				<span class="unique_id">Your ID = </span></p>
+				<p>Go to https://gifme.tv/mobile <span class="unique_id">Your ID = </span></p>
 			</div>
 		</div>
 	</div>
@@ -59,10 +58,8 @@
 			</div>
 
 			<div class="input_controls hidden">
-				<input id="tag-input" type="text" name="tag" placeholder="Keywords"> 
-				<div class="btn change-button"><i class="fa fa-sign-in" aria-hidden="true"></i>
-	 			GO!</div> 
-	 			<span>or press enter..</span>
+				<input id="tag-input" type="text" name="tag" placeholder="Enter one or two keywords.."> 
+				<div class="btn change-button">Search!</div> 
 			</div>
 		</div>
 		
@@ -99,7 +96,7 @@
 	    });
 
 	    socket.on('unique id', function (event) {
-	    	$('.unique_id').text('ID = ' + event.id);
+	    	$('.unique_id').text('Your ID = ' + event.id);
 	    });
 
 	    socket.on('control', function (data) {
