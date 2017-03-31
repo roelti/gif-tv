@@ -246,13 +246,26 @@ $(document).ready(function(){
 	});
 
 	$(".change-button").click(function(e){
-		customTag($("input").val());	
+		customTag($("input").val());
+
+		ga('send', {
+		  hitType: 'event',
+		  eventCategory: 'Term',
+		  eventAction: 'click',
+		  eventLabel: $("input").val()
+		});	
 	});
 
 	//Enter button to apply custom tag
 	$('input').on('keydown', function(e){
 		if (e.keyCode == 13){
 			customTag($("input").val());
+			ga('send', {
+			  hitType: 'event',
+			  eventCategory: 'Term',
+			  eventAction: 'enter',
+			  eventLabel: $("input").val()
+			});	
 		}
 	});
 
