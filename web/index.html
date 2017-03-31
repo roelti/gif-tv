@@ -18,6 +18,17 @@
 <script src="https://use.fontawesome.com/abc753b90a.js"></script>
 <!-- <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script> -->
 <script src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.ravenjs.com/3.8.1/raven.min.js"></script>
+
+<script> 
+	Raven.config('https://5614312f987f4ddbae6275db3126a9e6@sentry.studioseptember.nl/6').install() 
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-87299753-1', 'auto');
+	ga('send', 'pageview');
+</script>
 
 <!-- Favicon -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -45,7 +56,9 @@
 	</div>
 
 	<div class="tag"> 
-		<div class="title"><img class="tv" src="dist/images/gifmetv_logo_blue.gif"><span class="unique_id">ID =<span></div>
+		<div class="title"><img class="tv" src="dist/images/gifmetv_logo_blue.gif">
+			<!-- <span class="unique_id">ID =<span> -->
+		</div>
 		<div class="controls">
 			<div class="modus">
 				<span>Mode:</span>
@@ -59,7 +72,7 @@
 
 			<div class="input_controls hidden">
 				<input id="tag-input" type="text" name="tag" placeholder="Enter one or two keywords.."> 
-				<div class="btn change-button">Search!</div> 
+				<div class="btn change-button" onclick="">Search!</div> 
 			</div>
 		</div>
 		
@@ -114,14 +127,6 @@
 		    		break;
 		    }
 	    });
-
-	      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	      ga('create', 'UA-87299753-1', 'auto');
-	      ga('send', 'pageview');
 
 	 </script>
 
