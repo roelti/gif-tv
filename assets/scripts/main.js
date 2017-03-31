@@ -96,13 +96,13 @@ var prevTerm = null;
 //TODO: If counter = 0 dan getJSON en counter resetten bij term zoeken
 function render(term){
 
-	console.log('render', term, gifs.length);
+	
 
 
 	if(gifs.length > 0){
 
 		var media = gifs.shift();
-		console.log('render:media', media);
+		
 		var imgUrl = media.gif.url;
 
 		// console.log(data, counter);
@@ -129,29 +129,36 @@ function render(term){
 
 			alreadyGetting = true;
 
+			var mode = 'trending';
+			if(term){
+				mode = 'search';
+			}
 
-			var url = 'https://api.tenor.co/v1/search?key=LIVDSRZULELA' + '&pos=' + nextPos;
+			var url = 'https://api.tenor.co/v1/' + mode + '?key=LIVDSRZULELA' + '&pos=' + nextPos;
 			
 			if(term){
 				url += '&tag=' + encodeURIComponent(term);
 			}
 
 
-			console.log('render:get gifs', url);
 			$.getJSON(url, function(data){
 				alreadyGetting = false;
-				console.log('render:got gifs', data);
+				
 				for(index in data.results){
 					var result = data.results[index];
 					gifs.push(result.media[0]);
 				}
 				nextPos = data.next;
-				render(term);
-
-				if(prevTerm != term){
-					prevTerm = term;
+				
+				if (data.results.length > 0) {
 					render(term);
-				}
+
+					if(prevTerm != term){
+						prevTerm = term;
+						render(term);
+					}
+				} 
+				
 			});
 		}
 		
