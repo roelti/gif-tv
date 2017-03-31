@@ -218,6 +218,7 @@ $(document).ready(function(){
 		else{
 			exitFullscreen(document.documentElement);
 			fullscreen = false;
+			forcebar = true;
 			$('.fa-compress').removeClass('fa-compress').addClass('fa-expand');
 			$('body').addClass('show-tag');
 		}
