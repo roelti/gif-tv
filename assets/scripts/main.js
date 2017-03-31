@@ -84,6 +84,8 @@ function cycle(){
 
 var counter = 0;
 var pos = '';
+
+//TODO: If counter = 0 dan getJSON en counter resetten bij term zoeken
 function render(term){
 	var url = 'https://api.tenor.co/v1/trending?key=LIVDSRZULELA&pos=' + '&pos=' + pos;
 	if (counter == 19){
@@ -110,7 +112,7 @@ function render(term){
 		} else {	
 			$('.image_2').css("z-index", "-1"); 
 			$('.image_1').css("z-index", "10");
-  			background_image_2 = imgUrl
+  			background_image_2 = imgUrl;
     		$('.image_2').attr("src",imgUrl);
 	    	$('body').css("background-image","url(" + background_image_1 + ")"); 
 		}
@@ -126,7 +128,7 @@ function render(term){
 function customTag(keyword){
 	supressBar();
 	term = keyword;
-	if (term == ''){
+	if (term === ''){
 		document.title = 'Random GIFs';
 		$(".keywordmode").removeClass('active');
 		$(".change-button").removeClass('active');
@@ -141,7 +143,7 @@ function customTag(keyword){
 		$(".keywordmode").addClass('active');
 		$('body').find('.popup').addClass('hidden');
 	}
-
+	counter = 0;
 	render(term);
 }
 
@@ -157,7 +159,7 @@ $(document).ready(function(){
 
 	// Set fullscreen button
 	$(".fullscreen-button").click(function(element){
-		if (fullscreen == false){
+		if (fullscreen === false){
 			launchFullscreen(document.documentElement);
 			$('.fa-expand').removeClass('fa-expand').addClass('fa-compress');
 			fullscreen = true;
