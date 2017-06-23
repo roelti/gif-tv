@@ -50,6 +50,7 @@ function mousemover(e){
 		return;
 	}
 	$('body').addClass('show-tag');
+	console.log(forceBar);
 	if(runningTimeout!==null){
 		clearTimeout(runningTimeout);
 		runningTimeout=null;
@@ -87,7 +88,6 @@ function cycle(){
 var counter = 0;
 var pos = '';
 
-
 var gifs = [];
 var nextPos = '';
 
@@ -95,11 +95,7 @@ var alreadyGetting = false;
 
 var prevTerm = null;
 
-//TODO: If counter = 0 dan getJSON en counter resetten bij term zoeken
 function render(term){
-
-	
-
 
 	if(gifs.length > 0){
 
@@ -210,25 +206,25 @@ $(document).ready(function(){
 	// Set fullscreen button
 	$(".fullscreen-button").click(function(element){
 		if (fullscreen === false){
-			forcebar = true;
-			launchFullscreen(document.documentElement);
-			$('.fa-expand').removeClass('fa-expand').addClass('fa-compress');
 			fullscreen = true;
+			forceBar = false;
+			launchFullscreen(document.documentElement);
+			$('.fa-expand').removeClass('fa-expand').addClass('fa-compress');			
 			$('body').removeClass('show-tag');
+			console.log('Fullscreen on', forceBar);
 		}
 		else{
 			exitFullscreen(document.documentElement);
 			fullscreen = false;
-			forcebar = true;
+			forceBar = true;
 			$('.fa-compress').removeClass('fa-compress').addClass('fa-expand');
 			$('body').addClass('show-tag');
+			console.log('Fullscreen off');
 		}
 	});
 
-	// if (fullscreen = true) {
-		$( "body" ).mousemove(mousemover);
-		$('#tag-input').keypress(mousemover);
-	// }
+	$( "body" ).mousemove(mousemover);
+	$('#tag-input').keypress(mousemover);
 
 	$('.mo-closebtn').on('click', function(){
    		$('body').find('.popup').addClass('hidden');
